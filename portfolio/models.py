@@ -12,3 +12,16 @@ class Work(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Performance(models.Model):
+    work = models.ForeignKey(Work)
+    date = models.DateTimeField()
+    venue = models.CharField(max_length=50)
+    location = models.CharField(max_length=50)
+
+    def add(self):
+        self.save()
+
+    def __str__(self):
+        return '%s %s' % (self.venue, self.date)
