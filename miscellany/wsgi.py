@@ -1,5 +1,5 @@
 """
-WSGI config for crystalwarp project.
+WSGI config for miscellany project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
