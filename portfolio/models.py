@@ -8,8 +8,8 @@ class Work(models.Model):
     discipline = models.CharField(max_length=50)
     created_date = models.DateField()
     tags = ArrayField(
-        models.CharField(max_length=20, null=True),
-        null=True
+        models.CharField(max_length=20),
+        null=True, blank=True
     )
 
     def add(self):
@@ -21,7 +21,7 @@ class Work(models.Model):
 
 class Venue(models.Model):
     name = models.CharField(max_length=100)
-    address = models.TextField()
+    address = models.CharField(max_length=200)
 
     def add(self):
         self.save()
@@ -33,14 +33,13 @@ class Venue(models.Model):
 class Performance(models.Model):
     work = models.ForeignKey(Work)
     venue = models.ForeignKey(Venue)
-    date = models.DateTimeField()
-    location = models.CharField(max_length=50)
+    date = models.DateField()
 
     def add(self):
         self.save()
 
     def __str__(self):
-        return '%s %s' % (self.venue, self.date)
+        return '%s, %s @ %s' % (self.date, self.work, self.venue)
 
 
 class Image(models.Model):
