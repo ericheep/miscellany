@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>eric heep</title>
+        <link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
+    </head>
+    <body>
+        <div>
+            <h1> <a> ericheep </a> </h1>
+        </div>
+    </body>
+    <div>
+        <ul class="flex-container">
+        {% for work in works %}
+        <li class="flex-item"> {{ work }} </li>
+        {% endfor %}
+        <ul>
+    </div>
+</html>

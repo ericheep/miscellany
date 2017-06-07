@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from .models import Work
 
 
-def portfolio_list(request):
-    return render(request, 'portfolio/portfolio_list.html', {})
+def portfolio(request):
+    works = Work.objects.order_by('created_date')
+    return render(request, 'portfolio/portfolio.html', {'works': works})
