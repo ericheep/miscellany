@@ -16,7 +16,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+
 urlpatterns = [
+    # /
     url(r'^admin/', admin.site.urls),
+
+    # / Works.url_title ????
     url(r'', include('portfolio.urls')),
 ]

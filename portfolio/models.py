@@ -1,12 +1,16 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
+from django.template.defaultfilters import slugify
 
 
 class Work(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(null=True, blank=True, editable=False)
+
     text = models.TextField()
     discipline = models.CharField(max_length=50)
     created_date = models.DateField()
+
     tags = ArrayField(
         models.CharField(max_length=20),
         null=True, blank=True
@@ -14,6 +18,10 @@ class Work(models.Model):
 
     def add(self):
         self.save()
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Work, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
