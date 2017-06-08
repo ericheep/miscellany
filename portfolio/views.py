@@ -11,10 +11,11 @@ def portfolio(request, slug):
 
     context = {
         'work': work,
-        'slug': slug,
+        'slug': work.slug,
         'title': work.title,
         'text': work.text,
         'date': work.created_date,
+        'tags': work.tags,
     }
 
     return render(request, 'portfolio/portfolio.html', context)
