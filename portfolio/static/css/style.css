@@ -1,5 +1,4 @@
 a {
-    color: #FF0000;
     text-decoration: none;
 }
 
@@ -9,6 +8,26 @@ div {
 
 h1 {
     margin: 0px 20px;
+}
+
+.black {
+    color: #000000;
+}
+
+.red {
+    color: #FF0000;
+}
+
+.gray {
+    color: #808080;
+}
+
+.light-gray {
+    color: #E3E7EA;
+}
+
+.work-link {
+    padding-bottom: 5px;
 }
 
 #flex-tags {
@@ -32,34 +51,26 @@ h1 {
 #flex-body {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    flex-wrap: nowrap;
     justify-content: space-between;
     margin: 0px 20px;
 }
 
 #flex-works {
+    color: #FF0000;
     flex: 1 0 auto;
     order: 0;
     font-weight: bold;
     margin-right: 30px;
 }
 
-#work {
-    padding-bottom: 5px;
-}
-
-#flex-content{
-    flex: 0 1 auto;
-    order: 1;
-}
-
-span {
-    content:"";
+#flex-content {
     flex: 1 1 auto;
-    border-top: 1px solid #000;
+    order: 1;
+    text-align: left;
 }
 
-#content-title{
+#content-title {
     font-size: large;
     font-weight: bold;
 }
@@ -69,11 +80,12 @@ span {
     order: 2;
     font-size: small;
     margin-left: 30px;
+    text-align: right;
 }
 
-#performance-date {
+#performance-title {
 }
 
-#performance-venue{
-    padding-bottom: 5px;
+#performance-event{
+    padding-bottom: 10px;
 }

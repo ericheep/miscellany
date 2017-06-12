@@ -4,6 +4,11 @@ from django.template.defaultfilters import slugify, truncatechars
 
 class Tag(models.Model):
     title = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(null=True, blank=True, editable=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Tag, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
@@ -46,7 +51,7 @@ class Performance(models.Model):
     work = models.ForeignKey(Work)
     venue = models.ForeignKey(Venue)
     event = models.CharField(max_length=200)
-    date = models.DateField()
+    date = models.DateTimeField()
 
     def add(self):
         self.save()

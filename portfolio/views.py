@@ -1,28 +1,28 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Work
+from .models import Work, Tag
 
 
 def index(request):
-    return render(request, 'portfolio/index.html')
+    context = {
+        'tag_slug': "all",
+    }
+
+    return render(request, 'portfolio/index.html', context)
 
 
-def filtered(request, tag):
-    works = Work.objects.all()
-
-    filtered_works = works.filter(tags__title=tag)
-    excluded_works = works.exclude(tags__title=tag)
+def filtered(request, tag_slug):
+    tag = get_object_or_404(Tag, slug=tag_slug)
 
     context = {
-        'filtered_works': filtered_works,
-        'excluded_works': excluded_works,
         'tag': tag,
+        'tag_slug': tag_slug,
     }
 
     return render(request, 'portfolio/filtered.html', context)
 
 
-def work(request, slug):
-    work = get_object_or_404(Work, slug=slug)
+def works(request, work_slug):
+    work = get_object_or_404(Work, slug=work_slug)
 
     context = {
         'work': work,
@@ -30,6 +30,26 @@ def work(request, slug):
         'title': work.title,
         'text': work.text,
         'date': work.created_date,
+
+        'tag_slug': "all",
+    }
+
+    return render(request, 'portfolio/work.html', context)
+
+
+def filtered_works(request, tag_slug, work_slug):
+    work = get_object_or_404(Work, slug=work_slug)
+    tag = get_object_or_404(Tag, slug=tag_slug)
+
+    context = {
+        'work': work,
+        'slug': work.slug,
+        'title': work.title,
+        'text': work.text,
+        'date': work.created_date,
+
+        'tag': tag,
+        'tag_slug': tag_slug,
     }
 
     return render(request, 'portfolio/work.html', context)

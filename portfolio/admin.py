@@ -9,8 +9,14 @@ class WorkAdmin(admin.ModelAdmin):
         model = Work
 
 
+class PerformanceAdmin(admin.ModelAdmin):
+
+    class Meta:
+        model = Performance
+
+
 admin.site.register(Work, WorkAdmin)
-admin.site.register(Performance)
+admin.site.register(Performance, PerformanceAdmin)
 admin.site.register(Venue)
 admin.site.register(Image)
 admin.site.register(Tag)
