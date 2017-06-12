@@ -1,13 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ slug }} | ericheep {% endblock %}
+{% block title %} {{ slug }} | ericheep {% endblock %}
 
-{% block header %} ericheep | {{ title }} {% endblock %}
+{% block header %} ericheep {% endblock %}
 
-{% block content %}
-    <p>{{ text }}</p>
-    <p>{{ date }}</p>
-    {% for tag in tags %}
-        {{ tag }}
-    {% endfor %}
-{% endblock %}
+{% block content_title %} {{ title }} | {{ date|date:"Y" }} {% endblock %}
+
+{% block content %} {{ text|linebreaks }} {% endblock %}

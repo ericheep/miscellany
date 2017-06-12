@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ tag }} | ericheep {% endblock %}
+
+{% block header %} ericheep {% endblock %}
+
+{% block filtered %}
+    {% for filtered_work in filtered_works %}
+        <div> {{ filtered_work }} </div>
+    {% endfor %}
+{% endblock %}
+
+{% block excluded %}
+    {% for excluded_work in excluded_works %}
+        <div> {{ excluded_work }} </div>
+    {% endfor %}
+{% endblock %}
+
+{% block content %} This is what I'm going to say about my page. {% endblock %}

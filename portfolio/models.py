@@ -1,6 +1,12 @@
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
-from django.template.defaultfilters import slugify
+from django.template.defaultfilters import slugify, truncatechars
+
+
+class Tag(models.Model):
+    title = models.CharField(max_length=200, unique=True)
+
+    def __str__(self):
+        return self.title
 
 
 class Work(models.Model):
@@ -8,13 +14,11 @@ class Work(models.Model):
     slug = models.SlugField(null=True, blank=True, editable=False)
 
     text = models.TextField()
-    discipline = models.CharField(max_length=50)
     created_date = models.DateField()
+    tags = models.ManyToManyField(Tag)
 
-    tags = ArrayField(
-        models.CharField(max_length=20),
-        null=True, blank=True
-    )
+    def short_text(self):
+        return truncatechars(self.text, 50)
 
     def add(self):
         self.save()
@@ -41,6 +45,7 @@ class Venue(models.Model):
 class Performance(models.Model):
     work = models.ForeignKey(Work)
     venue = models.ForeignKey(Venue)
+    event = models.CharField(max_length=200)
     date = models.DateField()
 
     def add(self):

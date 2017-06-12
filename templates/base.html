@@ -1,30 +1,43 @@
-{% load work_tags %}
+{% load performance_tags %}
+{% load tag_tags %}
 
 <html lang="en">
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
     <link href="/static/css/style.css" rel="stylesheet"/>
     <title>{% block title %}{% endblock %}</title>
 </head>
 
 <body>
-    <div class="head"
-        <h1>{% block header %}{% endblock %}</h1>
+    <div> <h1>{% block header %}{% endblock %}</h1> </div>
+
+    <div id="flex-tags" >
+        {% get_tags as tags %}
+        {% for tag in tags %}
+        <div id="flex-tag"> <a href="/{{ tag }}/"> {{ tag }} </a> </div>
+        {% endfor %}
     </div>
 
-    <div class="sidebar">
-        {% block sidebar %}
-        <ul class="flex-container">
-            {% get_works as works %}
-            {% for work in works %}
-                <li class="flex-item"> <a class="pretty-link" href="/{{work.slug}}/">{{work.slug}}</a></li>
+    <div id="flex-body">
+        <div id="flex-works">
+            {% block filtered %} {% endblock %}
+            {% block excluded %} {% endblock %}
+            <!-- <div id="work"> <a href="/{{work.slug}}/">{{work.slug}}</a> </div> -->
+        </div>
+
+        <div id="flex-content">
+            <div id="content-title"> {% block content_title %}{% endblock %} </div>
+            {% block content %}{% endblock %}
+        </div>
+
+        <div id="flex-performances">
+            {% get_performances as performances %}
+            {% for performance in performances %}
+
+            <div id="performance-date"> {{performance.work}} | {{ performance.date|date:"m-d-Y" }} </div>
+            <div id="performance-venue"> {{ performance.venue }} </div>
             {% endfor %}
-        </ul>
-        {% endblock %}
-    </div>
-
-    <div class="flex-content">
-        {% block content %}{% endblock %}
+        </div>
     </div>
 </body>
 </html>
