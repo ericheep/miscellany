@@ -5,5 +5,5 @@ register = template.Library()
 
 
 @register.simple_tag
-def get_tags():
-    return Tag.objects.all()
+def get_tags(tag_slug):
+    return Tag.objects.exclude(slug=tag_slug)

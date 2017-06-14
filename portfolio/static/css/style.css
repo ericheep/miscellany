@@ -6,10 +6,6 @@ div {
     font-family: 'Ubuntu Mono', monospace;
 }
 
-h1 {
-    margin: 0px 20px;
-}
-
 .black {
     color: #000000;
 }
@@ -30,6 +26,16 @@ h1 {
     padding-bottom: 5px;
 }
 
+.works-title{
+    padding-bottom: 15px;
+    font-size: large;
+}
+
+#header {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
 #flex-tags {
     display: flex;
     color: #D8D8D8;
@@ -37,7 +43,8 @@ h1 {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    margin-left: 10px
+    margin: 20px 10px;
+    width: 50%;
 }
 
 #flex-tag {
@@ -45,7 +52,9 @@ h1 {
     font-weight: bold;
     text-align: center;
     font-size: small;
-    padding: 15px 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 5px;
 }
 
 #flex-body {
@@ -78,7 +87,7 @@ h1 {
 #flex-performances {
     flex: 1 0 auto;
     order: 2;
-    font-size: small;
+    font-size: x-small;
     margin-left: 30px;
     text-align: right;
 }

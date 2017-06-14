@@ -10,10 +10,10 @@
 </head>
 
 <body>
-    <div> <h1><a class="black" href="/">ericheep</a></h1> </div>
+    <div id="header"> <h1><a class="black" href="/">ericheep</a></h1> </div>
 
     <div id="flex-tags" >
-        {% get_tags as tags %}
+        {% get_tags tag_slug as tags %}
         {% for tag in tags %}
             <div id="flex-tag">
                 <a class="gray" href="/{{ tag.slug }}/"> {{ tag }} </a>
@@ -23,13 +23,14 @@
 
     <div id="flex-body">
         <div id="flex-works">
+            <div class="gray works-title"> works </div>
             {% get_filtered_works tag_slug as filtered_works %}
             {% for filtered_work in filtered_works %}
-                <div class="work-link"> <a class="red" href="/{{tag_slug}}/{{ filtered_work.slug }}/"> {{filtered_work.slug}} </a> </div>
-            {% endfor %}
-            {% get_excluded_works tag_slug as excluded_works %}
-            {% for excluded_work in excluded_works %}
-                <div class="work-link"> <a class="light-gray" href="/{{tag_slug}}/{{ excluded_work.slug }}/"> {{excluded_work.slug}} </a> </div>
+                <div class="work-link">
+                    <a class="red" href="/{{tag_slug}}/{{ filtered_work.slug }}/">
+                        {{filtered_work.slug}}
+                    </a>
+                </div>
             {% endfor %}
         </div>
 
@@ -41,6 +42,7 @@
         </div>
 
         <div id="flex-performances">
+            <div class="gray works-title"> performances </div>
             {% get_performances as performances %}
             {% for performance in performances %}
                 <div id="performance-title"> {{performance.work}} @ {{ performance.venue }} </div>
