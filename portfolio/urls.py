@@ -3,7 +3,8 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^(?P<tag_slug>[-\w]+)/$', views.filtered, name='filtered'),
-    url(r'^all/(?P<work_slug>[-\w]+)/$', views.works, name='work'),
-    url(r'^(?P<tag_slug>[-\w]+)/(?P<work_slug>[-\w]+)/$', views.filtered_works, name='work'),
+    url(r'^works/$', views.works, name='works'),
+    url(r'^works/(?P<work_slug>[-\w]+)/$', views.works, name='works'),
+    # url(r'^(?P<tag_slug>[-\w]+)/(?P<work_slug>[-\w]+)/$', views.filtered_works, name='work'),
 ]
+

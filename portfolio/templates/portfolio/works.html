@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}ericheep | works{% endblock %}
+
+{% block sub-header %}
+    <div id="flex-tags" >
+        {% for tag in tags %}
+            <div id="flex-tag">
+                <a class="gray" href="/{{ tag.slug }}/"> {{ tag }} </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div id="flex-works">
+        <div class="column-title"> works </div>
+        {% for work in works %}
+            <div class="work-link">
+                <a class="red" href="/works/{{ work.slug }}/">
+                    {{work.slug}}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="flex-description">
+        {% block content_title %}
+            <div id="work-title"> {{ title }} | {{ created_date }} </div>
+        {% endblock %}
+        {% block content %}
+            <div id="work-text"> {{ text }} </div>
+        {% endblock %}
+    </div>
+{% endblock %}

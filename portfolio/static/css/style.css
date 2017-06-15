@@ -26,13 +26,25 @@ div {
     padding-bottom: 5px;
 }
 
-.works-title{
+.column-title {
     padding-bottom: 15px;
-    font-size: large;
+    color: #000000;
+    font-size: small;
+    font-weight: bold;
+}
+
+
+#name {
+    display: inline;
 }
 
 #header {
     margin-top: 20px;
+    margin-left: 20px;
+}
+
+#nav {
+    display: inline;
     margin-left: 20px;
 }
 
@@ -57,7 +69,7 @@ div {
     padding-bottom: 5px;
 }
 
-#flex-body {
+#flex-main {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -73,15 +85,16 @@ div {
     margin-right: 30px;
 }
 
-#flex-content {
+#work-text{
     flex: 1 1 auto;
     order: 1;
     text-align: left;
 }
 
-#content-title {
+#work-title {
     font-size: large;
     font-weight: bold;
+    padding-bottom: 15px;
 }
 
 #flex-performances {

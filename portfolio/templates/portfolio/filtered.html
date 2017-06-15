@@ -2,4 +2,22 @@
 
 {% block title %}ericheep | {{ tag_slug }} {% endblock %}
 
-{% block content %} This is what I'm going to say about my page. {% endblock %}
+{% block body %}
+    <div id="flex-works">
+        <div class="gray works-title"> works </div>
+            {% get_filtered_works tag_slug as filtered_works %}
+            {% for filtered_work in filtered_works %}
+                <div class="work-link">
+                    <a class="red" href="/{{tag_slug}}/{{ filtered_work.slug }}/">
+                        {{filtered_work.slug}}
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    <div id="flex-description">
+        <div id="content-title">
+            {% block content_title %}{% endblock %}
+        </div>
+        {% block content %}{% endblock %}
+    </div>
+{% endblock %}
