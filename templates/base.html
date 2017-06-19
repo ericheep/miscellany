@@ -8,21 +8,18 @@
 </head>
 
 <body>
-    <div id="header">
-        <h1 id="name">
-            <a class="black" href="/">ericheep</a>
-        </h1>
-        <h2 id="nav">
-            <a class="black" href="/">about</a>
-            <a class="black" href="/works">works</a>
-            <a class="black" href="/contact">contact</a>
-        </h2>
-    </div>
+    <div id="flex-all">
+        <div id="header">
+            <h1 id="name">
+                <a class="black" href="/">ericheep</a>
+            </h1>
+            <h2 id="nav">
+                <a class="black" href="/">about</a>
+                <a class="black" href="/works">works</a>
+                <a class="black" href="/contact">contact</a>
+            </h2>
+        </div>
 
-    {% block sub-header %}{% endblock %}
-
-    <div id="flex-main">
-        {% block body %}{% endblock %}
         <div id="flex-performances">
             <div class="column-title"> performances </div>
             {% get_performances as performances %}
@@ -31,8 +28,16 @@
                 <div id="performance-event"> {{performance.event}} | {{ performance.date|date:"m-d-Y gA"}} </div>
             {% endfor %}
         </div>
-    </div>
 
-    {% block footer %} {% endblock %}
+        {% block sub-header %}{% endblock %}
+
+
+        <div id="flex-main">
+            {% block body %}{% endblock %}
+        </div>
+
+
+        {% block footer %} {% endblock %}
+    </div>
 </body>
 </html>

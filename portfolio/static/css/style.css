@@ -56,7 +56,7 @@ div {
     align-items: center;
     justify-content: flex-start;
     margin: 20px 10px;
-    width: 50%;
+    width: 33%;
 }
 
 #flex-tag {
@@ -81,6 +81,7 @@ div {
     color: #FF0000;
     flex: 1 0 auto;
     order: 0;
+    font-size: small;
     font-weight: bold;
     margin-right: 30px;
 }
