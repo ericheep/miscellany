@@ -1,0 +1,19 @@
+div {
+    outline: #FF0000 dotted thin;
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+#page-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#page-item-work {
+    flex: 1 0 auto;
+    order: 0
+}
+
+#page-item-performance {
+    flex: 1 0 auto;
+    order: 1
+}

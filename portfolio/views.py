@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import View
 from .models import Work, Tag
 
 
@@ -33,6 +34,23 @@ def works(request, work_slug=None):
     return render(request, 'portfolio/works.html', context)
 
 
+class FilterWorks(View):
+    def get(self, request, *args, **kwargs):
+        tag = request.GET.get('tag', None)
+
+        works = Work.objects.all()
+
+        if tag:
+            works = works.filter()
+
+
+def about(request):
+
+    context = {}
+
+    return render(request, 'portfolio/about.html', context)
+
+
 def contact(request):
 
     context = {}
@@ -56,3 +74,10 @@ def filtered_works(request, tag_slug, work_slug):
     }
 
     return render(request, 'portfolio/work.html', context)
+
+
+def miscellany(request):
+
+    context = {}
+
+    return render(request, 'portfolio/miscellany.html', context)
