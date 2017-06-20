@@ -10,7 +10,7 @@
         <h2>add work</h2>
         <form method="POST" class="miscellany-form">
             {% csrf_token %}
-            {{ work_form }}
+            {{ work_form.as_p }}
             <button type="submit" class="save btn btn-default">save</button>
         </form>
     </div>
@@ -25,7 +25,9 @@
 </div>
 <div id="page-lower-container">
     <div id="page-item-work-list">
-
+        {% for work in works %}
+        {{ work }}
+        {% endfor %}
     </div>
     <div id="page-item-performance-list">
     </div>
