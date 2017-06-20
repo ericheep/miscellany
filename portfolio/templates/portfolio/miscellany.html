@@ -5,14 +5,28 @@
     <title>miscellany</title>
 </head>
 
-<div id="page-container">
+<div id="page-upper-container">
     <div id="page-item-work">
-        <form action="/your-name/" method="post">
-            <label for="your_name">login</label>
-            <input id="your_name" type="text" name = "your_name" value="{{ current_name }}">
-            <input type="submit" value="go">
+        <h2>add work</h2>
+        <form method="POST" class="miscellany-form">
+            {% csrf_token %}
+            {{ work_form }}
+            <button type="submit" class="save btn btn-default">save</button>
         </form>
     </div>
     <div id="page-item-performance">
+        <h2>add performance</h2>
+        <form method="POST" class="miscellany-form">
+            {% csrf_token %}
+            {{ performance_form.as_p }}
+            <button type="submit" class="save btn btn-default">save</button>
+        </form>
+    </div>
+</div>
+<div id="page-lower-container">
+    <div id="page-item-work-list">
+
+    </div>
+    <div id="page-item-performance-list">
     </div>
 </div>

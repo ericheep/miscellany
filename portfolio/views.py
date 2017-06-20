@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import View
-from .models import Work, Tag
+
+from .forms import WorkForm, PerformanceForm
+from .models import Work, Tag, Performance
 
 
 def index(request):
@@ -78,6 +80,17 @@ def filtered_works(request, tag_slug, work_slug):
 
 def miscellany(request):
 
-    context = {}
+    work_form = WorkForm()
+    performance_form = PerformanceForm()
+
+    works = Work.objects.all().order_by('-created_date')
+    performances = Performance.objects.all().order_by('-created_date')
+
+    context = {
+        'work_form': work_form,
+        'performance_form': performance_form,
+        'works': works,
+        'performances': performances,
+    }
 
     return render(request, 'portfolio/miscellany.html', context)
