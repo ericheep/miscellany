@@ -17,8 +17,7 @@
     font-weight: bold;
     text-align: center;
     font-size: small;
-    padding-right: 10px;
-    padding-bottom: 5px;
+    padding: 5px 10px;
 }
 
 #work-container {
@@ -30,19 +29,20 @@
 
 #work-item-list {
     color: #FF0000;
-    flex: 1 0 auto;
+    flex: 0 0 auto;
     order: 0;
     font-size: small;
     font-weight: bold;
     margin-right: 30px;
+    margin-left: 5px;
 }
 
 #work-link {
-    padding-bottom: 5px;
+    padding: 3px 5px;
 }
 
 #work-item-content {
-    flex: 1 0 content;
+    flex: 1 1 auto;
 }
 
 #work-title {

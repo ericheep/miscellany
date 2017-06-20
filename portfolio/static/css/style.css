@@ -38,7 +38,10 @@ div {
 
 #nav {
     display: inline;
-    margin-left: 20px;
+}
+
+#nav-item {
+    padding: 5px 5px;
 }
 
 /* main container */
@@ -46,6 +49,7 @@ div {
 #page-container {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 #page-item-body {
