@@ -5,11 +5,21 @@ div {
 
 h2 {
     margin-left: 15px;
+    font-size: normal;
+    text-decoration: underline;
+}
+
+.helptext {
+    color: gray;
 }
 
 .miscellany-form {
     font-size: normal;
     margin-left: 15px;
+}
+
+#id_event {
+    display: inline;
 }
 
 #page-upper-container {
@@ -25,4 +35,29 @@ h2 {
 #page-item-performance {
     flex: 1 0 auto;
     order: 1
+}
+
+#page-lower-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#page-item-work-list {
+    flex: 1 0 auto;
+    flex-direction: column;
+    order: 0;
+}
+
+#page-item-work {
+    flex: 1 0 auto;
+}
+
+#page-item-performance-list {
+    flex: 1 0 auto;
+    flex-direction: column;
+    order: 1;
+}
+
+#page-item-performance {
+    flex: 1 0 auto;
 }

@@ -84,7 +84,7 @@ def miscellany(request):
     performance_form = PerformanceForm()
 
     works = Work.objects.all().order_by('-created_date')
-    performances = Performance.objects.all().order_by('-created_date')
+    performances = Performance.objects.all().order_by('-date')
 
     context = {
         'work_form': work_form,
