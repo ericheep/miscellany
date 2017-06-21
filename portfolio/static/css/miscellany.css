@@ -15,49 +15,57 @@ h2 {
 
 .miscellany-form {
     font-size: normal;
-    margin-left: 15px;
 }
 
-#id_event {
-    display: inline;
-}
-
-#page-upper-container {
+#page-container {
     display: flex;
     flex-direction: row;
 }
 
-#page-item-work {
-    flex: 1 0 auto;
-    order: 0
-}
-
-#page-item-performance {
-    flex: 1 0 auto;
-    order: 1
-}
-
-#page-lower-container {
+#work-half {
     display: flex;
-    flex-direction: row;
-}
-
-#page-item-work-list {
     flex: 1 0 auto;
+    order: 0;
     flex-direction: column;
+    margin: 5px;
+    width: 50%;
+}
+
+#work-form {
+    flex: 1 0 auto;
     order: 0;
 }
 
-#page-item-work {
+#work-list {
     flex: 1 0 auto;
-}
-
-#page-item-performance-list {
-    flex: 1 0 auto;
-    flex-direction: column;
+    font-size: small;
     order: 1;
 }
 
-#page-item-performance {
+#work-item {
+    flex: 1 0 auto;
+}
+
+#performance-half {
+    display: flex;
+    flex: 1 0 auto;
+    order: 1;
+    flex-direction: column;
+    margin: 5px;
+    width: 50%;
+}
+
+#performance-form {
+    flex: 1 0 auto;
+    order: 0;
+}
+
+#performance-list {
+    flex: 1 0 auto;
+    font-size: small;
+    order: 1;
+}
+
+#performance-item {
     flex: 1 0 auto;
 }

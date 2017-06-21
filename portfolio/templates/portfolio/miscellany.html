@@ -5,41 +5,45 @@
     <title>miscellany</title>
 </head>
 
-<div id="page-upper-container">
-    <div id="page-item-work">
-        <h2>add work</h2>
-        <form method="POST" class="miscellany-form">
-            {% csrf_token %}
-            {{ work_form.as_p}}
-            <button type="submit" class="save btn btn-default">save</button>
-        </form>
+<body>
+    <div id="page-container">
+        <div id="work-half">
+            <div id="work-form">
+                <h2>add work</h2>
+                <form method="POST" class="miscellany-form">
+                    {% csrf_token %}
+                    {{ work_form.as_p}}
+                    <button type="submit" class="save btn btn-default">save</button>
+                </form>
+            </div>
+            <div id="work-list">
+                {% for work in works %}
+                    <div id="work-item">
+                        {{ work.created_date|date:"y-m-d" }}
+                        {{ work.title }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div id="performance-half">
+            <div id="performance-form">
+                <h2>add performance</h2>
+                <form method="POST" class="miscellany-form">
+                    {% csrf_token %}
+                    {{ performance_form.as_p }}
+                    <button type="submit" class="save btn btn-default">save</button>
+                </form>
+            </div>
+            <div id="performance-list">
+                {% for performance in performances %}
+                    <div id="performance-item">
+                        {{ performance.date|date:"y-m-d h:i" }}
+                        {{ performance.event }} |
+                        {{ performance.work }} @
+                        {{ performance.venue }}
+                    </div">
+                {% endfor %}
+            </div>
+        </div>
     </div>
-    <div id="page-item-performance">
-        <h2>add performance</h2>
-        <form method="POST" class="miscellany-form">
-            {% csrf_token %}
-            {{ performance_form.as_p }}
-            <button type="submit" class="save btn btn-default">save</button>
-        </form>
-    </div>
-</div>
-<div id="page-lower-container">
-    <div id="page-item-work-list">
-        {% for work in works %}
-            <div id="page-item-work">
-                {{ work.created_date|date:"y-m-d" }}
-                {{ work.title }}
-            </div">
-        {% endfor %}
-    </div>
-    <div id="page-item-performance-list">
-        {% for performance in performances %}
-            <div id="page-item-performance">
-                {{ performance.date|date:"y-m-d h:i" }}
-                {{ performance.event }} |
-                {{ performance.work }} @
-                {{ performance.venue }}
-            </div">
-        {% endfor %}
-    </div>
-</div>
+</body>
