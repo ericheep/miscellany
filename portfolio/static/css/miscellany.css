@@ -9,6 +9,12 @@ h2 {
     text-decoration: underline;
 }
 
+td, th {
+    padding-right: 5px;
+    font-size: x-small;
+    text-align: left;
+}
+
 .helptext {
     color: gray;
 }
@@ -62,7 +68,6 @@ h2 {
 
 #performance-list {
     flex: 1 0 auto;
-    font-size: small;
     order: 1;
 }
 

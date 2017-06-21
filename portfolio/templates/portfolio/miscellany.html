@@ -17,12 +17,24 @@
                 </form>
             </div>
             <div id="work-list">
-                {% for work in works %}
-                    <div id="work-item">
-                        {{ work.created_date|date:"y-m-d" }}
-                        {{ work.title }}
-                    </div>
-                {% endfor %}
+                <table>
+                    <tr>
+                        <th>Created Date</th>
+                        <th>Title</th>
+                        <th>Tags</th>
+                    </tr>
+                    {% for work in works %}
+                    <tr>
+                        <th>{{ work.created_date|date:"y-m-d" }}</th>
+                        <th>{{ work.title }}</th>
+                        <th>
+                            {% for tag in work.tags.all %}
+                                {{ tag }},
+                            {% endfor %}
+                        </th>
+                    </tr>
+                    {% endfor %}
+                </table>
             </div>
         </div>
         <div id="performance-half">
@@ -35,14 +47,22 @@
                 </form>
             </div>
             <div id="performance-list">
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Event</th>
+                        <th>Work</th>
+                        <th>Venue</th>
+                    </tr>
                 {% for performance in performances %}
-                    <div id="performance-item">
-                        {{ performance.date|date:"y-m-d h:i" }}
-                        {{ performance.event }} |
-                        {{ performance.work }} @
-                        {{ performance.venue }}
-                    </div">
+                    <tr>
+                        <td>{{ performance.date|date:"y-m-d h:i" }}</td>
+                        <td>{{ performance.event }}</td>
+                        <td>{{ performance.work }}</td>
+                        <td>{{ performance.venue }}</td>
+                    </tr>
                 {% endfor %}
+                </table>
             </div>
         </div>
     </div>
