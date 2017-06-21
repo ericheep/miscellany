@@ -8,10 +8,15 @@ class WorkForm(forms.ModelForm):
     )
 
     text = forms.CharField(
-        widget=forms.Textarea
+        widget=forms.Textarea(attrs={'cols': 70, 'rows': 15})
     )
 
-    field_order = ['title', 'text']
+    created_date = forms.DateField(
+        label='Date',
+        widget=forms.TextInput(attrs={'placeholder': 'YY-MM-DD'})
+    )
+
+    field_order = ['title', 'text', 'created_date']
 
     class Meta:
         model = Work
@@ -26,14 +31,15 @@ class PerformanceForm(forms.ModelForm):
 
     venue = forms.ModelChoiceField(
         queryset=Venue.objects,
-        empty_label="(nil)")
+        empty_label="(nil)"
+    )
 
     event = forms.CharField(
-        max_length=100
+        max_length=100,
     )
 
     date = forms.DateField(
-        help_text="YY-MM-DD",
+        widget=forms.TextInput(attrs={'placeholder': 'YY-MM-DD'})
     )
 
     field_order = ['work', 'venue', 'event', 'date']
@@ -41,6 +47,19 @@ class PerformanceForm(forms.ModelForm):
     class Meta:
         model = Performance
         fields = {}
-        # help_texts = {
-        #     'date': "YY-MM-DD",
-        # }
+
+
+class VenueForm(forms.ModelForm):
+    name = forms.CharField(
+        max_length=100,
+    )
+
+    address = forms.CharField(
+        max_length=200,
+    )
+
+    field_order = ['name', 'address']
+
+    class Meta:
+        model = Performance
+        fields = {}

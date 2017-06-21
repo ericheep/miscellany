@@ -2,72 +2,101 @@
 <head>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
     <link href="/static/css/miscellany.css" rel="stylesheet"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.js"></script>
+    <script src="/static/p5/miscellany.js"></script>
     <title>miscellany</title>
 </head>
 
 <body>
-    <div id="page-container">
-        <div id="work-half">
-            <div id="work-form">
-                <h2>add work</h2>
-                <form method="POST" class="miscellany-form">
-                    {% csrf_token %}
-                    <table class="table-form">
-                        {{ work_form.as_table}}
-                    </table>
-                    <button type="submit" class="save btn btn-default">save</button>
-                </form>
-            </div>
-            <div id="work-list">
-                <table>
-                    <tr class="table-list">
-                        <th>Created Date</th>
-                        <th>Title</th>
-                        <th>Tags</th>
-                    </tr>
-                    {% for work in works %}
-                    <tr class="table-list">
-                        <th>{{ work.created_date|date:"y-m-d" }}</th>
-                        <th>{{ work.title }}</th>
-                        <th>
-                            {% for tag in work.tags.all %}
-                                {{ tag }},
-                            {% endfor %}
-                        </th>
-                    </tr>
-                    {% endfor %}
+    <div class="section">
+        <div class="section-form">
+            <h3>add work</h3>
+            <form method="POST" class="miscellany-form">
+                {% csrf_token %}
+                <table class="table-form">
+                    {{ work_form.as_table}}
                 </table>
-            </div>
+                <button type="submit" class="save btn btn-default">save</button>
+            </form>
         </div>
-        <div id="performance-half">
-            <div id="performance-form">
-                <h2>add performance</h2>
-                <form method="POST" class="miscellany-form">
-                    {% csrf_token %}
-                    <table class="table-form">
-                        {{ performance_form.as_table }}
-                    </table>
-                    <button type="submit" class="save btn btn-default">save</button>
-                </form>
-            </div>
-            <div id="performance-list">
-                <table>
-                    <tr class="table-list">
-                        <th>Date</th>
-                        <th>Event</th>
-                        <th>Work</th>
-                        <th>Venue</th>
-                    </tr>
-                {% for performance in performances %}
-                    <tr class="table-list">
-                        <td>{{ performance.date|date:"y-m-d h:i" }}</td>
-                        <td>{{ performance.event }}</td>
-                        <td>{{ performance.work }}</td>
-                        <td>{{ performance.venue }}</td>
-                    </tr>
+        <div class="section-list">
+            <table>
+                <tr class="table-list">
+                    <th>Created Date</th>
+                    <th>Title</th>
+                    <th>Tags</th>
+                </tr>
+                {% for work in works %}
+                <tr class="table-list">
+                    <td>{{ work.created_date|date:"y-m-d" }}</td>
+                    <td>{{ work.title }}</td>
+                    <td>
+                        {% for tag in work.tags.all %}
+                            {{ tag }},
+                        {% endfor %}
+                    </td>
+                </tr>
                 {% endfor %}
+            </table>
+        </div>
+    </div>
+    <hr>
+    <div class="section">
+        <div class="section-form">
+            <h3>add performance</h3>
+            <form method="POST" class="miscellany-form">
+                {% csrf_token %}
+                <table class="table-form">
+                    {{ performance_form.as_table }}
                 </table>
-            </div>
+                <button type="submit" class="save btn btn-default">save</button>
+            </form>
+        </div>
+        <div class="section-list">
+            <table>
+                <tr class="table-list">
+                    <th>Date</th>
+                    <th>Event</th>
+                    <th>Work</th>
+                    <th>Venue</th>
+                </tr>
+            {% for performance in performances %}
+                <tr class="table-list">
+                    <td>{{ performance.date|date:"y-m-d h:i" }}</td>
+                    <td>{{ performance.event }}</td>
+                    <td>{{ performance.work }}</td>
+                    <td>{{ performance.venue }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+    </div>
+    <hr>
+    <div class="section">
+        <div class="section-form">
+            <h3>add venue</h3>
+            <form method="POST" class="miscellany-form">
+                {% csrf_token %}
+                <table class="table-form">
+                    {{ venue_form.as_table }}
+                </table>
+                <button type="submit" class="save btn btn-default">save</button>
+            </form>
+        </div>
+        <div class="section-list">
+            <table>
+                <tr class="table-list">
+                    <th>Name</th>
+                    <th>Address</th>
+                </tr>
+            {% for venue in venues %}
+                <tr class="table-list">
+                    <td>{{ venue.name }}</td>
+                    <td>{{ venue.address }}</td>
+                </tr>
+            {% endfor %}
+            </table>
         </div>
     </div>
 </body>

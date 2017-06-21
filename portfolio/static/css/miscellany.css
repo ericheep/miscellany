@@ -1,21 +1,21 @@
 div {
-    outline: #FF0000 dotted thin;
     font-family: 'Ubuntu Mono', monospace;
 }
 
-h2 {
+h3 {
     margin-left: 15px;
-    font-size: normal;
     text-decoration: underline;
 }
 
 button {
+    margin-top: 15px;
     margin-left: 15px;
 }
 
-.helptext {
-    color: gray;
+th, td {
+    padding-right: 15px;
 }
+
 
 .miscellany-form {
     font-size: normal;
@@ -34,54 +34,24 @@ button {
     text-align: left;
 }
 
-#page-container {
-    display: flex;
-    flex-direction: column;
-}
-
-#work-half {
+.section {
     display: flex;
     flex: 1 0 auto;
-    order: 0;
     flex-direction: row;
     justify-content: space-between;
     margin: 5px;
 }
 
-#work-form {
+.section-form {
     flex: 1 0 auto;
     order: 0;
 }
 
-#work-list {
-    flex: 1 0 auto;
+.section-list {
+    overflow-y: scroll hidden;
+    margin: 20px 0px;
+    flex: 0 1 auto;
     font-size: small;
     order: 1;
-}
-
-#work-item {
-    flex: 1 0 auto;
-}
-
-#performance-half {
-    display: flex;
-    flex: 1 0 auto;
-    order: 1;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 5px;
-}
-
-#performance-form {
-    flex: 1 0 auto;
-    order: 0;
-}
-
-#performance-list {
-    flex: 1 0 auto;
-    order: 1;
-}
-
-#performance-item {
-    flex: 1 0 auto;
+    width: 50%;
 }
