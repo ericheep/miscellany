@@ -26,19 +26,32 @@ function draw() {
     }
 }
 
+function length(P, Q) {
+    return Math.sqrt(Math.pow(P.x - Q.x, 2) + Math.pow(P.y - Q.y, 2));
+}
+
 function Diamond(originX, originY, size) {
     this.p1 = createVector(-size, -size);
     this.p2 = createVector(-size,  size);
     this.p3 = createVector( size,  size);
     this.p4 = createVector( size, -size);
 
-    this.v1 = createVector(-size, -size);
-    this.v2 = createVector(-size,  size);
-    this.v3 = createVector( size,  size);
-    this.v4 = createVector( size, -size);
+    this.v1 = this.p1
+    this.v2 = this.p2
+    this.v3 = this.p3
+    this.v4 = this.p4
 
-    this.travel = function() {
+    this.line1 = length(this.p1, this.p2);
+    this.line2 = length(this.p2, this.p3);
+    this.line3 = length(this.p3, this.p4);
+    this.line4 = length(this.p4, this.p1);
 
+    this.travel = function(path, length) {
+        if (path < 0.25) {
+        } else if (path >= 0.25 && path < 0.5) {
+        } else if (path >= 0.5, && path < 0.75) {
+        } else if (Path > 0.75 && path < 1.00) {
+        }
     };
 
     this.display = function() {
@@ -50,7 +63,6 @@ function Diamond(originX, originY, size) {
         vertex(this.v2.x, this.v2.y);
         vertex(this.v3.x, this.v3.y);
         vertex(this.v4.x, this.v4.y);
-        vertex(this.v5.x, this.v5.y);
         endShape();
     };
 }
