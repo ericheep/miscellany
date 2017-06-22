@@ -1,5 +1,5 @@
 var canvas;
-var creeper = new Array();
+var diamond = new Array();
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
@@ -12,31 +12,45 @@ function setup() {
     canvas.style('position', 'fixed');
     canvas.style('z-index', '-1');
 
-    for (i = 0; i < windowHeight; i++){
-        creeper.push(new Creeper(0, i));
-    }
+    strokeWeight(3.0);
+
+    // for (i = 0; i < 1 = i++){
+        diamond.push(new Diamond(windowWidth/2, windowHeight/2, 10));
+    // }
 }
 
 function draw() {
-    for (i = 0; i < windowHeight; i++){
-        creeper[i].creep();
-        creeper[i].display();
+    for (i = 0; i < diamond.length; i++){
+        //diamond[i].scan();
+        diamond[i].display();
     }
 }
 
-function Creeper(x, y) {
-    this.x1 = x;
-    this.y1 = y;
+function Diamond(originX, originY, size) {
+    this.p1 = createVector(-size, -size);
+    this.p2 = createVector(-size,  size);
+    this.p3 = createVector( size,  size);
+    this.p4 = createVector( size, -size);
 
-    this.x2 = x;
-    this.y2 = y;
+    this.v1 = createVector(-size, -size);
+    this.v2 = createVector(-size,  size);
+    this.v3 = createVector( size,  size);
+    this.v4 = createVector( size, -size);
 
-    this.creep = function() {
-        this.x2 += Math.floor((Math.random() * 5) + 1);
+    this.travel = function() {
+
     };
 
     this.display = function() {
-        stroke(250, 250, 250);
-        line(this.x1, this.y1, this.x2, this.y2);
-    }
+        stroke(255, 220, 220);
+        translate(originX, originY)
+
+        beginShape();
+        vertex(this.v1.x, this.v1.y);
+        vertex(this.v2.x, this.v2.y);
+        vertex(this.v3.x, this.v3.y);
+        vertex(this.v4.x, this.v4.y);
+        vertex(this.v5.x, this.v5.y);
+        endShape();
+    };
 }
