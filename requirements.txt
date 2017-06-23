@@ -6,7 +6,6 @@ docutils==0.13.1
 jmespath==0.9.3
 olefile==0.44
 Pillow==4.1.1
-pkg-resources==0.0.0
 psycopg2==2.7.1
 python-dateutil==2.6.0
 pytz==2017.2
