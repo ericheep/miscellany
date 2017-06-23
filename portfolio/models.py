@@ -15,8 +15,9 @@ class Tag(models.Model):
 
 
 class Image(models.Model):
+    image = models.ImageField(upload_to='img')
     title = models.CharField(max_length=200, unique=True)
-    image = models.ImageField(upload_to='miscellany/work/')
+    description = models.TextField(blank=True)
 
     def add(self):
         self.save()

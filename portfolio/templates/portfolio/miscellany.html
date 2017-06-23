@@ -99,4 +99,33 @@
             </table>
         </div>
     </div>
+    <hr>
+    <div class="section">
+        <div class="section-form">
+            <h3>add image</h3>
+            <form method="POST" class="miscellany-form">
+                {% csrf_token %}
+                <table class="table-form">
+                    {{ image_form.as_table }}
+                </table>
+                <button type="submit" class="save btn btn-default">save</button>
+            </form>
+        </div>
+        <div class="section-list">
+            <table>
+                <tr class="table-list">
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>URL</th>
+                </tr>
+            {% for image in images %}
+                <tr class="table-list">
+                    <td>{{ image.title }}</td>
+                    <td>{{ image.description }}</td>
+                    <td><img src="{{ image.image.url }}" width=10, height=10></td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+    </div>
 </body>

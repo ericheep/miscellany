@@ -1,5 +1,5 @@
 from django import forms
-from .models import Work, Performance, Venue
+from .models import Work, Performance, Venue, Image
 
 
 class WorkForm(forms.ModelForm):
@@ -62,4 +62,20 @@ class VenueForm(forms.ModelForm):
 
     class Meta:
         model = Performance
+        fields = {}
+
+
+class ImageForm(forms.ModelForm):
+    title = forms.CharField(
+        max_length=100,
+    )
+
+    description = forms.CharField(
+        widget=forms.Textarea(attrs={'cols': 70, 'rows': 15})
+    )
+
+    image = forms.ImageField()
+
+    class Meta:
+        model = Image
         fields = {}
