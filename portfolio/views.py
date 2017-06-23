@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import View
 
-from .forms import WorkForm, PerformanceForm, VenueForm
-from .models import Work, Tag, Performance, Venue
+from .forms import WorkForm, PerformanceForm, VenueForm, ImageForm
+from .models import Work, Tag, Performance, Venue, Image
 
 
 def index(request):
@@ -83,18 +83,22 @@ def miscellany(request):
     work_form = WorkForm()
     performance_form = PerformanceForm()
     venue_form = VenueForm()
+    image_form = ImageForm()
 
     works = Work.objects.all().order_by('-created_date')
     performances = Performance.objects.all().order_by('-date')
     venues = Venue.objects.all().order_by('name')
+    images = Image.objects.all().order_by('title')
 
     context = {
         'work_form': work_form,
         'performance_form': performance_form,
         'venue_form': venue_form,
+        'image_form': image_form,
         'works': works,
         'performances': performances,
         'venues': venues,
+        'images': images,
     }
 
     return render(request, 'portfolio/miscellany.html', context)
