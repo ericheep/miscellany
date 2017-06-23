@@ -7,3 +7,4 @@ local_settings.py
 myvenv
 /static
 .DS_Store
+miscellany/local_settings.py

@@ -14,12 +14,24 @@ class Tag(models.Model):
         return self.title
 
 
+class Image(models.Model):
+    title = models.CharField(max_length=200, unique=True)
+    image = models.ImageField(upload_to='miscellany/work/')
+
+    def add(self):
+        self.save()
+
+    def __str__(self):
+        return self.title
+
+
 class Work(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(null=True, blank=True, editable=False)
 
     text = models.TextField()
     created_date = models.DateField()
+    images = models.ManyToManyField(Image)
     tags = models.ManyToManyField(Tag)
 
     def short_text(self):
@@ -58,15 +70,3 @@ class Performance(models.Model):
 
     def __str__(self):
         return '%s, %s @ %s' % (self.date, self.work, self.venue)
-
-
-class Image(models.Model):
-    work = models.ForeignKey(Work, null=True)
-    name = models.CharField(max_length=100)
-    url = models.URLField(max_length=200)
-
-    def add(self):
-        self.save()
-
-    def __str__(self):
-        return self.name
