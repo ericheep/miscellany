@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Work, Performance, Venue, Image, Tag
+from .models import Work, Performance, Venue, Image, Tag, Collaborator
 
 
 class WorkAdmin(admin.ModelAdmin):
@@ -20,3 +20,4 @@ admin.site.register(Performance, PerformanceAdmin)
 admin.site.register(Venue)
 admin.site.register(Image)
 admin.site.register(Tag)
+admin.site.register(Collaborator)

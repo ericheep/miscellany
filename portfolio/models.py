@@ -29,11 +29,14 @@ class Image(models.Model):
 class Work(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(null=True, blank=True, editable=False)
-
-    text = models.TextField()
     created_date = models.DateField()
-    images = models.ManyToManyField(Image)
-    tags = models.ManyToManyField(Tag)
+
+    featured = models.BooleanField(default=True)
+    # pdf = models.FileField(blank=True)
+    github = models.URLField(blank=True)
+    text = models.TextField(blank=True)
+    images = models.ManyToManyField(Image, blank=True)
+    tags = models.ManyToManyField(Tag, blank=True)
 
     def short_text(self):
         return truncatechars(self.text, 50)
@@ -60,8 +63,19 @@ class Venue(models.Model):
         return self.name
 
 
+class Collaborator(models.Model):
+    name = models.CharField(max_length=200)
+    website = models.URLField(blank=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Performance(models.Model):
-    work = models.ForeignKey(Work)
+    work = models.ForeignKey(Work, blank=True)
+    other = models.CharField(max_length=200, blank=True)
+
+    collaborators = models.ManyToManyField(Collaborator)
     venue = models.ForeignKey(Venue)
     event = models.CharField(max_length=200)
     date = models.DateTimeField()

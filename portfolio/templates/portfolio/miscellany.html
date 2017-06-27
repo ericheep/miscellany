@@ -21,24 +21,26 @@
             </form>
         </div>
         <div class="section-list">
-            <table>
-                <tr class="table-list">
-                    <th>Created Date</th>
-                    <th>Title</th>
-                    <th>Tags</th>
-                </tr>
-                {% for work in works %}
-                <tr class="table-list">
-                    <td>{{ work.created_date|date:"y-m-d" }}</td>
-                    <td>{{ work.title }}</td>
-                    <td>
-                        {% for tag in work.tags.all %}
-                            {{ tag }},
-                        {% endfor %}
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>
+            <div class="section-scroll">
+                <table>
+                    <tr class="table-list">
+                        <th>Created Date</th>
+                        <th>Title</th>
+                        <th>Tags</th>
+                    </tr>
+                    {% for work in works %}
+                    <tr class="table-list">
+                        <td>{{ work.created_date|date:"y-m-d" }}</td>
+                        <td>{{ work.title }}</td>
+                        <td>
+                            {% for tag in work.tags.all %}
+                                {{ tag }},
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
     </div>
     <hr>
@@ -54,22 +56,24 @@
             </form>
         </div>
         <div class="section-list">
-            <table>
-                <tr class="table-list">
-                    <th>Date</th>
-                    <th>Event</th>
-                    <th>Work</th>
-                    <th>Venue</th>
-                </tr>
-            {% for performance in performances %}
-                <tr class="table-list">
-                    <td>{{ performance.date|date:"y-m-d h:i" }}</td>
-                    <td>{{ performance.event }}</td>
-                    <td>{{ performance.work }}</td>
-                    <td>{{ performance.venue }}</td>
-                </tr>
-            {% endfor %}
-            </table>
+            <div class="section-scroll">
+                <table>
+                    <tr class="table-list">
+                        <th>Date</th>
+                        <th>Event</th>
+                        <th>Work</th>
+                        <th>Venue</th>
+                    </tr>
+                {% for performance in performances %}
+                    <tr class="table-list">
+                        <td>{{ performance.date|date:"y-m-d h:i" }}</td>
+                        <td>{{ performance.event }}</td>
+                        <td>{{ performance.work }}</td>
+                        <td>{{ performance.venue }}</td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </div>
         </div>
     </div>
     <hr>
@@ -85,18 +89,20 @@
             </form>
         </div>
         <div class="section-list">
-            <table>
-                <tr class="table-list">
-                    <th>Name</th>
-                    <th>Address</th>
-                </tr>
-            {% for venue in venues %}
-                <tr class="table-list">
-                    <td>{{ venue.name }}</td>
-                    <td>{{ venue.address }}</td>
-                </tr>
-            {% endfor %}
-            </table>
+            <div class="section-scroll">
+                <table>
+                    <tr class="table-list">
+                        <th>Name</th>
+                        <th>Address</th>
+                    </tr>
+                {% for venue in venues %}
+                    <tr class="table-list">
+                        <td>{{ venue.name }}</td>
+                        <td>{{ venue.address }}</td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </div>
         </div>
     </div>
     <hr>
@@ -112,20 +118,22 @@
             </form>
         </div>
         <div class="section-list">
-            <table>
-                <tr class="table-list">
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>URL</th>
-                </tr>
-            {% for image in images %}
-                <tr class="table-list">
-                    <td>{{ image.title }}</td>
-                    <td>{{ image.description }}</td>
-                    <td><img src="{{ image.image.url }}" width=10, height=10></td>
-                </tr>
-            {% endfor %}
-            </table>
+            <div class="section-scroll">
+                <table>
+                    <tr class="table-list">
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>URL</th>
+                    </tr>
+                {% for image in images %}
+                    <tr class="table-list">
+                        <td>{{ image.title }}</td>
+                        <td>{{ image.description }}</td>
+                        <td><img src="{{ image.image.url }}" width=10, height=10></td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </div>
         </div>
     </div>
 </body>

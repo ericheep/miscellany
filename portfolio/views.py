@@ -14,7 +14,7 @@ def index(request):
 
 
 def works(request, work_slug=None):
-    works = Work.objects.all().order_by('-created_date')
+    works = Work.objects.all().filter(featured=True).order_by('-created_date')
     tags = Tag.objects.all()
 
     context = {

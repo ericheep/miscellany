@@ -43,15 +43,25 @@ th, td {
 }
 
 .section-form {
-    flex: 1 0 auto;
+    width: 50%;
     order: 0;
 }
 
 .section-list {
-    overflow-y: scroll hidden;
-    margin: 20px 0px;
-    flex: 0 1 auto;
-    font-size: small;
+    position: relative;
     order: 1;
     width: 50%;
+}
+
+.section-scroll {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    outline: #FF0000 dotted thin;
+    background: #FFFFFF;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
 }
