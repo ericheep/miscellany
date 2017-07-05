@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
+{% load static %}
 
+{% block css %} <link href="{% static "/css/works.css" %}" rel="stylesheet"/> {% endblock %}
 {% block title %}ericheep | works{% endblock %}
 
 {% block body %}
@@ -17,8 +19,10 @@
                 {% for work in works %}
                     <div class="hover" id="work-link">
                         <a class="red" href="/works/{{ work.slug }}/">
-                            {{work.slug}}
+                            {{work.title}}
                         </a>
+                        <br>
+                        <div id="work-info">{{work.created_date|date:"M, Y"}}</div>
                     </div>
                 {% endfor %}
             </div>

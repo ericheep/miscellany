@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 
+{% block css %} <link href="{% static "/css/about.css" %}" rel="stylesheet"/> {% endblock %}
 {% block title %}ericheep | about{% endblock %}
 
 {% block body %}
-    <div id="about-page">
-        I need to give you your christmas list now, but, oh I'll just tell you, for the past six months, I've been giving Dwight something from the CIA.
+    <div id="about-text">
+        <p>
+            Eric Heep is a experimental composer/artist living in Los Angeles, CA.
+        </p>
     </div>
 {% endblock %}

@@ -41,6 +41,10 @@
     padding: 3px 5px;
 }
 
+#work-info{
+    color: #FFCCCC;
+}
+
 #work-item-content {
     flex: 1 1 auto;
 }

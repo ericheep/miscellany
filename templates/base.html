@@ -3,10 +3,10 @@
 <html lang="en">
 <head>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
-    <link href="/static/css/works.css" rel="stylesheet"/>
     <link href="/static/css/style.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/works.js"></script>
+    {%block css %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
 </head>
 
@@ -20,8 +20,6 @@
                 <h2 id="nav">
                     <a id="nav-item" class="black hover" href="/about">about</a>
                     <a id="nav-item" class="black hover" href="/works">works</a>
-                    <a id="nav-item" class="black hover" href="/contact">contact</a>
-                    <a id="nav-item" class="black hover" href="/cv">cv</a>
                 </h2>
             </div>
 

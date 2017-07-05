@@ -32,7 +32,7 @@ class Work(models.Model):
     created_date = models.DateField()
 
     featured = models.BooleanField(default=True)
-    # pdf = models.FileField(blank=True)
+    pdf = models.FileField(blank=True)
     github = models.URLField(blank=True)
     text = models.TextField(blank=True)
     images = models.ManyToManyField(Image, blank=True)
