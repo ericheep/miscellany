@@ -5,16 +5,40 @@
 {% block title %}ericheep | about{% endblock %}
 
 {% block body %}
-    <div id="about-text">
-        {{ image.url }}
-        <img src={{ image.url }}>
-        <p>
-            Eric Heep is a experimental composer/artist living in Los Angeles, CA, and received his BFA and MFA in Music Technology at California Institute of the Arts.
-        <p>
-            Currently programing/scripting/3D printing for Technical Multimedia Design Inc., in Burbank, CA.
-        </p>
-        <p>
-            His work generally includes incorporating existing technology in novel ways, creative coding, and experimenting with the American experimental tradition.
-        </p>
+    <div id="profile">
+        <div id="image">
+            <img src="{{ image.image.url }}" width=150 height=150>
+        </div>
+        <div id="text">
+            <p>
+                Eric Heep is a experimental composer/artist living in Los Angeles, CA, and received his BFA and MFA in Music Technology at California Institute of the Arts.
+            <p>
+                Currently programming/3D modeling and printing for Technical Multimedia Design Inc., in Burbank, CA.
+            </p>
+            <p>
+                His work generally includes incorporating existing technology in novel ways, he's down with creative coding, and likes experimenting with sound in the vein of the American experimental tradition.
+            </p>
+
+        </div>
+    </div>
+    <div id="footer">
+        <div>
+            <p> He also works with the following. </p>
+        </div>
+        <div id="collaborators">
+            {% for collaborator in collaborators %}
+                {% if collaborator.url %}
+                    <a href={{ collaborator.url }}>
+                        <div id="collaborator-url">
+                            {{ collaborator.name }}
+                        </div>
+                    </a>
+                {% else %}
+                    <div id="collaborator">
+                        {{ collaborator.name }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

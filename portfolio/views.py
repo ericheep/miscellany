@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 # from django.views.generic import View
 
 from .forms import WorkForm, PerformanceForm, VenueForm, ImageForm
-from .models import Work, Tag, Performance, Venue, Image
+from .models import Work, Tag, Performance, Venue, Image, Collaborator
 
 
 def index(request):
@@ -47,9 +47,11 @@ def about(request):
 
     images = Image.objects.all().filter(image_type='P')
     image = images.order_by('?').first()
+    collaborators = Collaborator.objects.all().order_by('name')
 
     context = {
         'image': image,
+        'collaborators': collaborators,
     }
 
     return render(request, 'portfolio/about.html', context)

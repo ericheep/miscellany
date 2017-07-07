@@ -1,3 +1,37 @@
-#about-text{
+#profile {
+    display: flex;
     margin: 25px;
+    flex-direction: row;
+    align-items: center;
+}
+
+#image {
+    order: 0;
+    margin-right: 15px;
+}
+
+#text {
+    order: 1;
+}
+
+#footer {
+    margin: 25px;
+}
+
+#collaborators {
+    display: flex;
+    font-weight: bold;
+    flex-direction: row;
+}
+
+#collaborator, #collaborator-url {
+    flex: 0 1 auto;
+    outline: dotted;
+    padding: 3px 5px;
+    margin-right: 10px;
+}
+
+#collaborator-url:hover {
+    background: red;
+    color: white;
 }
