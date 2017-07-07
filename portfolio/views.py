@@ -23,6 +23,7 @@ def works(request, tag_slug=None):
     context = {
         'works': works,
         'tags': tags,
+        'tag_slug': tag_slug,
     }
 
     return render(request, 'portfolio/works.html', context)
@@ -44,7 +45,12 @@ def work(request, work_slug):
 
 def about(request):
 
-    context = {}
+    images = Image.objects.all().filter(image_type='P')
+    image = images.order_by('?').first()
+
+    context = {
+        'image': image,
+    }
 
     return render(request, 'portfolio/about.html', context)
 

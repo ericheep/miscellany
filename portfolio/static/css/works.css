@@ -44,6 +44,11 @@
     outline: solid;
 }
 
+.selected {
+    background: red;
+    color: white;
+}
+
 #work-item:hover {
     background: red;
     color: white;

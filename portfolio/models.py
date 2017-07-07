@@ -15,9 +15,22 @@ class Tag(models.Model):
 
 
 class Image(models.Model):
+    WORK = 'W'
+    PROFILE = 'P'
+    IMAGE_TYPES = (
+        (WORK, 'Work'),
+        (PROFILE, 'Profile'),
+    )
+
     image = models.ImageField(upload_to='img')
     title = models.CharField(max_length=200, unique=True)
     description = models.TextField(blank=True)
+
+    image_type = models.CharField(
+        max_length=1,
+        choices=IMAGE_TYPES,
+        default=WORK
+    )
 
     def add(self):
         self.save()

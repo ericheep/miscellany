@@ -8,7 +8,11 @@
     <div id="work-page">
         <div id="work-tags" >
             {% for tag in tags %}
-            <a href="/works/{{ tag.slug }}/"> <div id="work-tag">{{ tag }}</div></a>
+                {% if tag.slug == tag_slug %}
+                    <div class="selected" id="work-tag">{{ tag }}</div>
+                {% else %}
+                    <a href="/works/{{ tag.slug }}/"> <div id="work-tag">{{ tag }}</div></a>
+                {% endif %}
             {% endfor %}
         </div>
 
