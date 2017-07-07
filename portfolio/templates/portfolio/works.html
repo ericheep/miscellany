@@ -8,29 +8,29 @@
     <div id="work-page">
         <div id="work-tags" >
             {% for tag in tags %}
-                <div class="hover" id="work-tag">
-                    <a class="black" href="/{{ tag.slug }}/"> {{ tag }} </a>
-                </div>
+            <a href="/works/{{ tag.slug }}/"> <div id="work-tag">{{ tag }}</div></a>
             {% endfor %}
         </div>
 
-        <div id="work-container">
-            <div id="work-item-list">
-                {% for work in works %}
-                    <div class="hover" id="work-link">
-                        <a class="red" href="/works/{{ work.slug }}/">
-                            {{work.title}}
-                        </a>
-                        <br>
-                        <div id="work-info">{{work.created_date|date:"M, Y"}}</div>
-                    </div>
-                {% endfor %}
-            </div>
+        <div id="work-item-list">
+            {% for work in works %}
+                <a href="/works/{{work.slug }}/">
+                    <div id="work-item">
+                        <div id="work-info">
+                            <div id="work-title">
+                                {{ work.title }}
+                            </div>
+                            <div id="work-created-date">
+                                {{ work.created_date|date:"M, Y" }}
+                            </div>
+                        </div>
 
-            <div id="work-item-content">
-                <div id="work-title"> {{ title }} | {{ created_date }} </div>
-                <div id="work-text"> {{ text }} </div>
-            </div>
+                        <div id="work-abstract">
+                            {{ work.abstract }}
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
