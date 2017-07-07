@@ -1,70 +1,49 @@
-/* general styles */
-
 a {
+    color: black;
     text-decoration: none;
 }
+
 
 div {
     font-family: 'Ubuntu Mono', monospace;
 }
 
-.black {
-    color: #000000;
+.nav-item {
+    flex: 0 0 auto;
+    justify-content: center;
+    outline: solid;
+    padding: 5px 6px;
+    margin: 0px 1px;
 }
 
-.red {
-    color: #FF0000;
-}
-
-.title {
-    padding-bottom: 15px;
-    color: #000000;
-    font-size: small;
-    font-weight: bold;
-}
-
-.hover:hover {
-    outline: #FF0000 dotted thin;
-}
-
-#name {
-    display: inline;
+.nav-item:hover {
+    background: red;
+    color: white;
 }
 
 #header {
-    margin-top: 15px;
-    margin-left: 15px;
-}
-
-#nav {
-    display: inline;
-}
-
-#nav-item {
-    padding: 5px 5px;
-}
-
-/* main container */
-
-#page-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    margin-left: 25px;
 }
 
-#page-item-body {
-    flex: 1 0 content;
-    order: 0;
-}
-
-#page-item-performances {
+#name {
     flex: 0 0 auto;
-    order: 1;
-    margin: 15px;
-    text-align: right;
-    font-size: x-small;
+    order: 0;
+    padding: 5px 0px;
+    margin-right: 10px;
 }
 
-#performance-event{
-    padding-bottom: 10px;
+#about {
+    order: 1;
+}
+
+#works {
+    order: 2;
+}
+
+#events {
+    order: 3;
 }

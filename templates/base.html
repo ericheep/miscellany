@@ -1,40 +1,22 @@
-{% load performance_tags %}
-
 <html lang="en">
-<head>
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
-    <link href="/static/css/style.css" rel="stylesheet"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/js/works.js"></script>
-    {%block css %}{% endblock %}
-    <title>{% block title %}{% endblock %}</title>
-</head>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+        <link href="/static/css/style.css" rel="stylesheet"/>
+        {%block css %}{% endblock %}
+        <title>{% block title %}{% endblock %}</title>
+    </head>
 
-<body>
-    <div id="page-container">
-        <div id="page-item-body">
-            <div id="header">
-                <h1 id="name">
-                    <a class="black" href="/">ericheep</a>
-                </h1>
-                <h2 id="nav">
-                    <a id="nav-item" class="black hover" href="/about">about</a>
-                    <a id="nav-item" class="black hover" href="/works">works</a>
-                </h2>
-            </div>
-
-            {% block body %}{% endblock %}
-            {% block footer %} {% endblock %}
+    <header>
+        <div id="header">
+            <h1 id="name"> <a href="/">ericheep</a> </h1>
+            <a href="/about"><h2 class="nav-item" id="about">about</h2></a>
+            <a href="/works"><h2 class="nav-item" id="works">works</h2></a>
+            <a href="/events"><h2 class="nav-item" id="events">events</h2></a>
         </div>
+    </header>
 
-        <div id="page-item-performances">
-            <div class="title">performances</div>
-            {% get_performances as performances %}
-            {% for performance in performances %}
-                <div id="performance-title"> {{performance.work}} @ {{ performance.venue }} </div>
-                <div id="performance-event"> {{performance.event}} | {{ performance.date|date:"m-d-Y gA"}} </div>
-            {% endfor %}
-        </div>
-    </div>
-</body>
+    <body>
+        {% block body %}{% endblock %}
+        {% block footer %} {% endblock %}
+    </body>
 </html>
