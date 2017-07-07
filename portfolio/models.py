@@ -30,6 +30,7 @@ class Work(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(null=True, blank=True, editable=False)
     created_date = models.DateField()
+    abstract = models.TextField()
 
     featured = models.BooleanField(default=True)
     pdf = models.FileField(blank=True)
