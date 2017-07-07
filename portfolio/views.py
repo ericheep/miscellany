@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import View
+# from django.views.generic import View
 
 from .forms import WorkForm, PerformanceForm, VenueForm, ImageForm
 from .models import Work, Tag, Performance, Venue, Image
@@ -13,37 +13,33 @@ def index(request):
     return render(request, 'portfolio/index.html', context)
 
 
-def works(request, work_slug=None):
+def works(request, tag_slug=None):
     works = Work.objects.all().filter(featured=True).order_by('-created_date')
     tags = Tag.objects.all()
+
+    if tag_slug is not None:
+        works = works.filter(tags__slug=tag_slug)
 
     context = {
         'works': works,
         'tags': tags,
     }
 
-    if work_slug is not None:
-        work = get_object_or_404(Work, slug=work_slug)
-
-        context.update({
-            'work': work,
-            'slug': work.slug,
-            'title': work.title,
-            'text': work.text,
-            'created_date': work.created_date,
-        })
-
     return render(request, 'portfolio/works.html', context)
 
 
-class FilterWorks(View):
-    def get(self, request, *args, **kwargs):
-        tag = request.GET.get('tag', None)
+def work(request, work_slug):
+    work = get_object_or_404(Work, slug=work_slug)
 
-        works = Work.objects.all()
+    context = {
+        'work': work,
+        'slug': work.slug,
+        'title': work.title,
+        'text': work.text,
+        'created_date': work.created_date,
+    }
 
-        if tag:
-            works = works.filter()
+    return render(request, 'portfolio/work.html', context)
 
 
 def about(request):
@@ -58,24 +54,6 @@ def contact(request):
     context = {}
 
     return render(request, 'portfolio/contact.html', context)
-
-
-def filtered_works(request, tag_slug, work_slug):
-    work = get_object_or_404(Work, slug=work_slug)
-    tag = get_object_or_404(Tag, slug=tag_slug)
-
-    context = {
-        'work': work,
-        'slug': work.slug,
-        'title': work.title,
-        'text': work.text,
-        'created_date': work.created_date,
-
-        'tag': tag,
-        'tag_slug': tag_slug,
-    }
-
-    return render(request, 'portfolio/work.html', context)
 
 
 def miscellany(request):
