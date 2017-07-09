@@ -12,6 +12,9 @@
 
 #text {
     order: 1;
+    padding: 0px 5px;
+    outline: dashed;
+    outline-color: red;
 }
 
 #footer {
