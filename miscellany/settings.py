@@ -25,6 +25,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'www.ericheep.com',
     '127.0.0.1',
+    'development.ipjzsd68ih.us-west-1.elasticbeanstalk.com',
 ]
 
 # Application definition
