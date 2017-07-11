@@ -3,11 +3,10 @@
 *.pyc
 __pycache__/
 *~
-local_settings.py
 myvenv
 /static
+/www/static
 .DS_Store
-miscellany/local_settings.py
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
