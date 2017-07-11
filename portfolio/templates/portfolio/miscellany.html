@@ -46,11 +46,11 @@
     <hr>
     <div class="section">
         <div class="section-form">
-            <h3>add performance</h3>
+            <h3>add event</h3>
             <form method="POST" class="miscellany-form">
                 {% csrf_token %}
                 <table class="table-form">
-                    {{ performance_form.as_table }}
+                    {{ event.as_table }}
                 </table>
                 <button type="submit" class="save btn btn-default">save</button>
             </form>
@@ -64,12 +64,12 @@
                         <th>Work</th>
                         <th>Venue</th>
                     </tr>
-                {% for performance in performances %}
+                {% for event in events %}
                     <tr class="table-list">
-                        <td>{{ performance.date|date:"y-m-d h:i" }}</td>
-                        <td>{{ performance.event }}</td>
-                        <td>{{ performance.work }}</td>
-                        <td>{{ performance.venue }}</td>
+                        <td>{{ event.date|date:"y-m-d h:i" }}</td>
+                        <td>{{ event.event }}</td>
+                        <td>{{ event.work }}</td>
+                        <td>{{ event.venue }}</td>
                     </tr>
                 {% endfor %}
                 </table>

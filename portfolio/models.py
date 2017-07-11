@@ -22,7 +22,7 @@ class Image(models.Model):
         (PROFILE, 'Profile'),
     )
 
-    image = models.ImageField(upload_to='img')
+    image = models.ImageField(upload_to='images')
     title = models.CharField(max_length=200, unique=True)
     description = models.TextField(blank=True)
 
@@ -46,11 +46,13 @@ class Work(models.Model):
     abstract = models.TextField()
 
     featured = models.BooleanField(default=True)
-    pdf = models.FileField(blank=True)
+    pdf = models.FileField(upload_to='pdfs', blank=True)
     github = models.URLField(blank=True)
     text = models.TextField(blank=True)
     images = models.ManyToManyField(Image, blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
+
+    thumbnail = models.ImageField(upload_to='thumbnails', blank=True)
 
     def short_text(self):
         return truncatechars(self.text, 50)
@@ -85,13 +87,13 @@ class Collaborator(models.Model):
         return self.name
 
 
-class Performance(models.Model):
+class Event(models.Model):
     work = models.ForeignKey(Work, blank=True)
     other = models.CharField(max_length=200, blank=True)
 
     collaborators = models.ManyToManyField(Collaborator)
     venue = models.ForeignKey(Venue)
-    event = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
     date = models.DateTimeField()
 
     def add(self):

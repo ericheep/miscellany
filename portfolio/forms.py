@@ -1,5 +1,5 @@
 from django import forms
-from .models import Work, Performance, Venue, Image
+from .models import Work, Event, Venue, Image
 
 
 class WorkForm(forms.ModelForm):
@@ -23,7 +23,7 @@ class WorkForm(forms.ModelForm):
         fields = {}
 
 
-class PerformanceForm(forms.ModelForm):
+class EventForm(forms.ModelForm):
     work = forms.ModelChoiceField(
         queryset=Work.objects,
         empty_label="(nil)"
@@ -45,7 +45,7 @@ class PerformanceForm(forms.ModelForm):
     field_order = ['work', 'venue', 'event', 'date']
 
     class Meta:
-        model = Performance
+        model = Event
         fields = {}
 
 
@@ -61,7 +61,7 @@ class VenueForm(forms.ModelForm):
     field_order = ['name', 'address']
 
     class Meta:
-        model = Performance
+        model = Event
         fields = {}
 
 

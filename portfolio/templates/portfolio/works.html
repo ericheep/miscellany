@@ -18,8 +18,11 @@
 
         <div id="work-item-list">
             {% for work in works %}
-                <a href="/works/{{work.slug }}/">
+                <a id="work-row" href="/works/{{work.slug }}/">
                     <div id="work-item">
+                        <div id="work-thumbnail">
+                            <img src="{{ work.thumbnail }}" width=45 height=45>
+                        </div>
                         <div id="work-info">
                             <div id="work-title">
                                 {{ work.title }}
