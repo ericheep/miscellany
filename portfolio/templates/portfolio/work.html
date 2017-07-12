@@ -1,7 +1,27 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}ericheep | {{ slug }} {% endblock %}
+{% block css %}
+    <link href="{% static "/css/work.css" %}" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Kreon:300,400" rel="stylesheet">
+{% endblock %}
 
-{% block content_title %} {{ title }} | {{ date|date:"Y" }} {% endblock %}
+{% block title %}ericheep | {{ work.title }} {% endblock %}
 
-{% block content %} {{ text|linebreaks }} {% endblock %}
+{% block body %}
+
+    <div id="work-header">
+        <div id="work-info">
+            <div id="work-item">
+                {{ work.title }}
+            </div>
+            <div id="work-created-date">
+                {{ work.created_date|date:"M, Y" }}
+            </div>
+        </div>
+        <div id="work-text">
+            {{ work.text|linebreaks }}
+        </div>
+    </div>
+{% endblock %}
+

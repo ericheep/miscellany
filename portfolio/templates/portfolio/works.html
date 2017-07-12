@@ -18,11 +18,13 @@
 
         <div id="work-item-list">
             {% for work in works %}
-                <a id="work-row" href="/works/{{work.slug }}/">
-                    <div id="work-item">
-                        <div id="work-thumbnail">
-                            <img src="{{ work.thumbnail }}" width=45 height=45>
-                        </div>
+                <div id="work-row">
+                    <a id="work-item" href="/works/{{ work.slug }}/">
+                        <!-- add it back in later
+                            <div id="work-thumbnail">
+                                <img src="{{ work.thumbnail }}" width=45 height=45>
+                            </div>
+                        -->
                         <div id="work-info">
                             <div id="work-title">
                                 {{ work.title }}
@@ -35,8 +37,8 @@
                         <div id="work-abstract">
                             {{ work.abstract }}
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             {% endfor %}
         </div>
     </div>

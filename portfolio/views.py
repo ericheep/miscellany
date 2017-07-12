@@ -34,10 +34,6 @@ def work(request, work_slug):
 
     context = {
         'work': work,
-        'slug': work.slug,
-        'title': work.title,
-        'text': work.text,
-        'created_date': work.created_date,
     }
 
     return render(request, 'portfolio/work.html', context)
