@@ -31,9 +31,11 @@ def works(request, tag_slug=None):
 
 def work(request, work_slug):
     work = get_object_or_404(Work, slug=work_slug)
+    github = get_object_or_404(Image, image_type='G')
 
     context = {
         'work': work,
+        'github': github,
     }
 
     return render(request, 'portfolio/work.html', context)

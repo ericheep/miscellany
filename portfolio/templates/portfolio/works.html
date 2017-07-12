@@ -11,7 +11,7 @@
                 {% if tag.slug == tag_slug %}
                     <a href="/works/"><div class="selected" id="work-tag">{{ tag }}</div></a>
                 {% else %}
-                    <a href="/works/{{ tag.slug }}/"> <div id="work-tag">{{ tag }}</div></a>
+                    <a href="/{{ tag.slug }}/"><div id="work-tag">{{ tag }}</div></a>
                 {% endif %}
             {% endfor %}
         </div>

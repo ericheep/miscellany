@@ -17,9 +17,11 @@ class Tag(models.Model):
 class Image(models.Model):
     WORK = 'W'
     PROFILE = 'P'
+    GITHUB = 'G'
     IMAGE_TYPES = (
         (WORK, 'Work'),
         (PROFILE, 'Profile'),
+        (GITHUB, 'GitHub'),
     )
 
     image = models.ImageField(upload_to='images')

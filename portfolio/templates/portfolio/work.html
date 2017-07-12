@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load markdown_filter %}
 
 {% block css %}
     <link href="{% static "/css/work.css" %}" rel="stylesheet"/>
@@ -19,8 +20,11 @@
                 {{ work.created_date|date:"M, Y" }}
             </div>
         </div>
+        <div id="work-github">
+            <a href="{{ work.github }}"> <img src="{{ github.image.url }}" width=45 height=45></a>
+        </div>
         <div id="work-text">
-            {{ work.text|linebreaks }}
+            {{ work.text|markdownify|safe}}
         </div>
     </div>
 {% endblock %}
