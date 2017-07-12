@@ -20,11 +20,13 @@
                 {{ work.created_date|date:"M, Y" }}
             </div>
         </div>
-        <div id="work-github">
-            <a href="{{ work.github }}"> <img src="{{ github.image.url }}" width=45 height=45></a>
-        </div>
         <div id="work-text">
             {{ work.text|markdownify|safe}}
+        </div>
+        <div id="work-github">
+            {% if work.github %}
+                <a href="{{ work.github }}"> <img src="{{ github.image.url }}" width=45 height=45></a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
