@@ -46,11 +46,11 @@
     flex: 0 1 auto;
     order: 1;
     display: flex;
-    border: 3px;
-    border-style: solid dashed solid solid;
-    flex-direction: column;
+    /*border: 3px;
+    border-style: solid dashed solid solid;*/
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: flex-end;
 }
 
 #image {

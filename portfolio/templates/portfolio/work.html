@@ -21,13 +21,6 @@
                     ({{ work.created_date|date:"M, Y" }})
                 </div>
             </div>
-            <div id="images">
-                {% for image in images %}
-                    <div id="image">
-                        <img src="{{ image.image.url }}" width=175>
-                    </div>
-                {% endfor %}
-            </div>
         </div>
         <div id="main">
             <div id="text">
@@ -49,6 +42,13 @@
                         <div id="logo">youtube </div>
                     </a>
                 {% endif %}
+            </div>
+            <div id="images">
+                {% for image in images %}
+                    <div id="image">
+                        <img src="{{ image.image.url }}" height=175>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
