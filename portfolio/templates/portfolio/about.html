@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load markdown_filter %}
 
 {% block css %} <link href="{% static "/css/about.css" %}" rel="stylesheet"/> {% endblock %}
 {% block title %}ericheep | about{% endblock %}
@@ -13,7 +14,7 @@
                 </div>
             </div>
             <div id="text">
-                {{ profile.text|linebreaks }}
+                {{ profile.text|markdownify|safe }}
                 <div id="logos">
                     <a target="_blank" href="{{profile.github }}">
                         <div id="logo">github</div>

@@ -7,7 +7,6 @@ from .models import Work, Tag, Event, Venue, Image, Collaborator
 
 def index(request):
     context = {
-        'tag_slug': "all",
     }
 
     return render(request, 'portfolio/index.html', context)
@@ -63,13 +62,6 @@ def about(request):
     }
 
     return render(request, 'portfolio/about.html', context)
-
-
-def contact(request):
-
-    context = {}
-
-    return render(request, 'portfolio/contact.html', context)
 
 
 def miscellany(request):

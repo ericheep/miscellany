@@ -1,12 +1,10 @@
 var canvas;
 var tracer = new Array();
 
-var numPoints = 4;
-
 var inc = 0.0;
-var rows = 0;
-var cols = 0;
-var cubeSize = 100;
+var speed = 0.0;
+var numPoints = 0;
+var numTracers = 0;
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
@@ -19,39 +17,37 @@ function setup() {
     canvas.style('position', 'fixed');
     canvas.style('z-index', '-1');
 
-    strokeWeight(2.0);
+    strokeWeight(0.1);
 
-    rows = int(windowWidth/cubeSize) + 1;
-    cols = int(windowHeight/cubeSize) + 1;
+    speed = random(0.0005, 0.0010)
+    numPoints = int(random(4, 8));
+    numTracers = int(random(4, 8));
 
-    for (var i = 0; i < rows; i++) {
-        for (var j = 0; j < cols; j++) {
-            x = [i * cubeSize, (i + 1) * cubeSize, (i + 1) * cubeSize,       i * cubeSize];
-            y = [j * cubeSize,       j * cubeSize, (j + 1) * cubeSize, (j + 1) * cubeSize];
+    for (var j = 0; j < numTracers; j++) {
+        var x = []
+        var y = []
 
+        for (var i = 0; i < numPoints; i++) {
+            x.push(random(windowWidth));
+            y.push(random(windowHeight));
 
-            tracer.push(new Tracer(numPoints, x, y));
-        }
-    };
+        };
+        tracer.push(new Tracer(numPoints, x, y, random(0.1, 0.5)));
+    }
 }
 
 function draw() {
     background(255);
-    inc = (inc + 1.0/(30.0 * 16.0)) % 1.0;
-    stroke(255, 200, 200);
-    for (i = 0; i < rows * cols; i++){
-        // translate(windowWidth/2, windowHeight/2);
-        // tracer[i].trace(((inc * 0.01 * float(i)/1.0)) % 1.0, 0.5);
-        /*push();
-        for (j = 0; j < rows; j++) {
-            scale(0.9);
-            tracer[i].trace((inc + i * 0.01) % 1.0, 0.5);
-        }
-        pop();*/
+    inc = (inc + speed) % 1.0;
+
+    stroke(255, 0, 0);
+    fill(0, 0, 0, 5);
+    for (var i = 0; i < numTracers; i++) {
+        tracer[i].trace(inc % 1.0, 0.5);
     }
 }
 
-function Tracer(numPoints, x, y) {
+function Tracer(numPoints, x, y, len) {
     var invNumPoints = 1.0/numPoints;
 
     this.p = new Array();
@@ -79,7 +75,7 @@ function Tracer(numPoints, x, y) {
         vertex(this.v.x, this.v.y);
     };
 
-    this.trace = function(pos, len) {
+    this.trace = function(pos) {
         var a = Math.floor(pos * numPoints);
         var b = Math.floor(((pos + len) * numPoints) % numPoints);
 
