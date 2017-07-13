@@ -41,9 +41,7 @@
             </div>
             <div id="videos">
                 {% for clip in clips %}
-                    {% video clip.video as vid %}
-                        {% video vid "small" %}
-                    {% endvideo %}
+                    <a href="{{ clip }}">vimeo</a>
                 {% endfor %}
             </div>
         </div>

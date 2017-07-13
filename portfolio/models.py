@@ -1,6 +1,5 @@
 from django.db import models
 from django.template.defaultfilters import slugify, truncatechars
-from embed_video.fields import EmbedVideoField
 
 
 class Tag(models.Model):
@@ -41,10 +40,6 @@ class Image(models.Model):
         return self.title
 
 
-class Video(models.Model):
-    video = EmbedVideoField()
-
-
 class Work(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(null=True, blank=True, editable=False)
@@ -53,11 +48,13 @@ class Work(models.Model):
 
     featured = models.BooleanField(default=True)
     pdf = models.FileField(upload_to='pdfs', blank=True)
-    github = models.URLField(blank=True)
     text = models.TextField(blank=True)
     images = models.ManyToManyField(Image, blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
-    clips = models.ManyToManyField(Video, blank=True)
+
+    vimeo = models.URLField(blank=True)
+    youtube = models.URLField(blank=True)
+    github = models.URLField(blank=True)
 
     thumbnail = models.ImageField(upload_to='thumbnails', blank=True)
 
