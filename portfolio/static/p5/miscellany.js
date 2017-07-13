@@ -19,7 +19,7 @@ function setup() {
 
     strokeWeight(0.1);
 
-    speed = random(0.0005, 0.0010)
+    speed = 0.00005
     numPoints = int(random(4, 8));
     numTracers = int(random(4, 8));
 
