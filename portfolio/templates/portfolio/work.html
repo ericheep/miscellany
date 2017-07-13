@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load markdown_filter %}
-{% load embed_video_tags %}
 
 
 {% block css %}
@@ -13,19 +12,14 @@
 
 {% block body %}
     <div id="page">
-        <div id="left">
+        <div id="sidebar">
             <div id="card">
                 <div id="title">
                     {{ work.title }}
                 </div>
                 <div id="created-date">
-                    {{ work.created_date|date:"M, Y" }}
+                    ({{ work.created_date|date:"M, Y" }})
                 </div>
-            </div>
-            <div id="github">
-                {% if work.github %}
-                    <a href="{{ work.github }}"> <img src="{{ github.image.url }}" width=45 height=45></a>
-                {% endif %}
             </div>
             <div id="images">
                 {% for image in images %}
@@ -35,14 +29,21 @@
                 {% endfor %}
             </div>
         </div>
-        <div id="middle">
+        <div id="main">
             <div id="text">
                 {{ work.text|markdownify|safe}}
             </div>
-            <div id="videos">
-                {% for clip in clips %}
-                    <a href="{{ clip }}">vimeo</a>
-                {% endfor %}
+            <div id="logos">
+                {% if work.github %}
+                    <div id="logo">
+                        <a target="_blank" href="{{work.github }}"><img src="{{ github.image.url }}" height=15></a>
+                    </div>
+                {% endif %}
+                {% if work.vimeo %}
+                    <div id="logo">
+                        <a target="_blank" href="{{work.vimeo}}"><img src="{{ vimeo.image.url }}" height=15></a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

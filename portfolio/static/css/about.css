@@ -1,40 +1,63 @@
+#page {
+    margin: 25px;
+}
 #profile {
     display: flex;
-    margin: 25px;
     flex-direction: row;
-    align-items: center;
 }
 
 #image {
     order: 0;
     margin-right: 15px;
+    margin-top: 15px;
 }
 
 #text {
     order: 1;
-    padding: 0px 5px;
-    outline: dashed;
-    outline-color: red;
+    padding-left: 15px;
 }
 
-#footer {
-    margin: 25px;
-}
 
 #collaborators {
     display: flex;
+    width: 50%;
+    flex-wrap: wrap;
     font-weight: bold;
     flex-direction: row;
 }
 
 #collaborator, #collaborator-url {
     flex: 0 1 auto;
-    outline: dotted;
+    border: 2px;
+    border-style: dashed none none dashed;
     padding: 3px 5px;
-    margin-right: 10px;
+    margin-right: 12px;
+    margin-bottom: 12px;
 }
 
 #collaborator-url:hover {
     background: red;
     color: white;
+}
+
+#logos {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    font-weight: bold;
+    flex-direction: row;
+}
+
+#logo {
+    padding: 3px 3px;
+    margin: 15px 5px;
+    font-size: small;
+    border: 2px;
+    border-style: none dashed dashed none;
+}
+
+#logo:hover {
+    color: white;
+    background: red;
 }

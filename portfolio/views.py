@@ -31,15 +31,18 @@ def works(request, tag_slug=None):
 
 def work(request, work_slug):
     work = get_object_or_404(Work, slug=work_slug)
-    github = get_object_or_404(Image, image_type='G')
     images = work.images.all()
-    clips = work.clips.all()
+
+    github = get_object_or_404(Image, image_type='G')
+    vimeo = get_object_or_404(Image, image_type='V')
+    youtube = get_object_or_404(Image, image_type='Y')
 
     context = {
         'work': work,
-        'github': github,
         'images': images,
-        'clips': clips,
+        'github': github,
+        'vimeo': vimeo,
+        'youtube': youtube,
     }
 
     return render(request, 'portfolio/work.html', context)
@@ -56,13 +59,21 @@ def events(request):
 
 
 def about(request):
+    profile = get_object_or_404(Work, title="Profile")
 
-    images = Image.objects.all().filter(image_type='P')
-    image = images.order_by('?').first()
+    headshot = get_object_or_404(Image, title='profile')
+    github = get_object_or_404(Image, title='github-icon')
+    vimeo = get_object_or_404(Image, title='vimeo-icon')
+    youtube = get_object_or_404(Image, title='youtube-icon')
+
     collaborators = Collaborator.objects.all().order_by('name')
 
     context = {
-        'image': image,
+        'profile': profile,
+        'headshot': headshot,
+        'github': github,
+        'vimeo': vimeo,
+        'youtube': youtube,
         'collaborators': collaborators,
     }
 

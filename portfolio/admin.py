@@ -3,7 +3,7 @@ from .models import Work, Event, Venue, Image, Tag, Collaborator
 
 
 class WorkAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "slug", "short_text", "created_date"]
+    list_display = ["__str__", "slug", "abstract", "created_date"]
 
     class Meta:
         model = Work

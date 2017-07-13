@@ -1,15 +1,13 @@
-#blockquote {
-    font-weight: bold;
-}
-
+/* whole page */
 #page {
     display:flex;
     flex-direction: row;
     margin: 50px 25px;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
-#left {
+/* left side bar*/
+#sidebar {
     display: flex;
     flex-direction: column;
 }
@@ -44,35 +42,6 @@
     font-size: large;
 }
 
-#github {
-    flex: 0 1 auto;
-    align-self: flex-end;
-    margin-bottom: 15px;
-}
-
-#middle {
-    display: flex;
-    flex: 0 1 auto;
-    flex-direction: column;
-    flex-wrap: wrap;
-    margin: 0px 15px;
-}
-
-#videos {
-    margin: 25px 25px;
-    width: inherit;
-    align-self: center;
-}
-
-#text {
-    max-width: 900px;
-    flex: 0 1 auto;
-    order: 0;
-    font-weight: 300;
-    font-family: 'Kreon', serif;
-    padding: 10px 10px;
-}
-
 #images {
     flex: 0 1 auto;
     order: 1;
@@ -89,7 +58,31 @@
     padding: 5px 5px;
 }
 
-#right {
-    order: 2;
-    width: inherit;
+/*middlish main*/
+#main {
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0px 25px;
+}
+
+#text {
+    max-width: 900px;
+    flex: 0 1 auto;
+    order: 0;
+    font-weight: 300;
+    font-family: 'Kreon', serif;
+}
+
+#logos {
+    display: flex;
+    flex-direction: row;
+}
+
+#logo {
+    padding: 5px 5px;
+    margin-right: 10px;
+    border: 2px;
+    border-style: dashed;
 }

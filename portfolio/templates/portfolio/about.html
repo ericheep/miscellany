@@ -5,30 +5,38 @@
 {% block title %}ericheep | about{% endblock %}
 
 {% block body %}
-    <div id="profile">
-        <div id="image">
-            <img src="{{ image.image.url }}" width=150 height=150>
+    <div id="page">
+        <div id="profile">
+            <div id="sidebar">
+                <div id="image">
+                    <img src="{{ headshot.image.url }}" width=150 height=150>
+                </div>
+            </div>
+            <div id="text">
+                {{ profile.text|linebreaks }}
+                <div id="logos">
+                    <a target="_blank" href="{{profile.github }}">
+                        <div id="logo">github</div>
+                    </a>
+                    <a target="_blank" href="{{profile.vimeo}}">
+                        <div id="logo">vimeo</div>
+                    </a>
+                    <a target="_blank" href="{{profile.youtube}}">
+                        <div id="logo">youtube</div>
+                    </a>
+                    <a target="_blank" href="https://twitter.com/dkfjsal">
+                        <div id="logo">twitter</div>
+                    </a>
+                </div>
+            </div>
         </div>
-        <div id="text">
-            <p>
-                Eric Heep is a experimental composer/artist living in Los Angeles, CA, and received his BFA and MFA in Music Technology at California Institute of the Arts.
-            <p>
-                Currently programming/3D modeling and printing for Technical Multimedia Design Inc., in Burbank, CA.
-            </p>
-            <p>
-                His work generally includes incorporating existing technology in novel ways, he's down with creative coding, and likes experimenting with sound in the vein of the American experimental tradition.
-            </p>
-
-        </div>
-    </div>
-    <div id="footer">
         <div>
-            <p> He also works with the following. </p>
+            <p> He also works with these artists. </p>
         </div>
         <div id="collaborators">
             {% for collaborator in collaborators %}
                 {% if collaborator.url %}
-                    <a href={{ collaborator.url }}>
+                    <a href={{ collaborator.url }} target="_blank">
                         <div id="collaborator-url">
                             {{ collaborator.name }}
                         </div>

@@ -15,23 +15,10 @@ class Tag(models.Model):
 
 
 class Image(models.Model):
-    WORK = 'W'
-    PROFILE = 'P'
-    GITHUB = 'G'
-    IMAGE_TYPES = (
-        (WORK, 'Work'),
-        (PROFILE, 'Profile'),
-        (GITHUB, 'GitHub'),
-    )
-
     image = models.ImageField(upload_to='images')
     title = models.CharField(max_length=200, unique=True)
 
-    image_type = models.CharField(
-        max_length=1,
-        choices=IMAGE_TYPES,
-        default=WORK
-    )
+    image_type = models.CharField(max_length=1)
 
     def add(self):
         self.save()
@@ -44,22 +31,21 @@ class Work(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(null=True, blank=True, editable=False)
     created_date = models.DateField()
+    text = models.TextField(blank=True)
     abstract = models.TextField()
+    tags = models.ManyToManyField(Tag, blank=True)
+    images = models.ManyToManyField(Image, blank=True)
 
     featured = models.BooleanField(default=True)
-    pdf = models.FileField(upload_to='pdfs', blank=True)
-    text = models.TextField(blank=True)
-    images = models.ManyToManyField(Image, blank=True)
-    tags = models.ManyToManyField(Tag, blank=True)
 
+    pdf = models.FileField(upload_to='pdfs', blank=True)
     vimeo = models.URLField(blank=True)
     youtube = models.URLField(blank=True)
     github = models.URLField(blank=True)
 
+    # later at a artify thing to make it grayscale maybe, some sorta image script
+    # would be cool
     thumbnail = models.ImageField(upload_to='thumbnails', blank=True)
-
-    def short_text(self):
-        return truncatechars(self.text, 50)
 
     def add(self):
         self.save()
