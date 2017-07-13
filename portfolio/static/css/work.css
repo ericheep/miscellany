@@ -77,12 +77,22 @@
 
 #logos {
     display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    font-weight: bold;
     flex-direction: row;
 }
 
 #logo {
-    padding: 5px 5px;
-    margin-right: 10px;
+    padding: 3px 3px;
+    margin: 15px 5px;
+    font-size: small;
     border: 2px;
-    border-style: dashed;
+    border-style: none dashed dashed none;
+}
+
+#logo:hover {
+    color: white;
+    background: red;
 }
