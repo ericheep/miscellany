@@ -1,5 +1,5 @@
 from django.db import models
-from django.template.defaultfilters import slugify, truncatechars
+from django.template.defaultfilters import slugify
 
 
 class Tag(models.Model):
@@ -28,9 +28,9 @@ class Image(models.Model):
 class Work(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(null=True, blank=True, editable=False)
-    created_date = models.DateField()
+    abstract = models.TextField(max_length=200)
     text = models.TextField(blank=True)
-    abstract = models.TextField()
+    created_date = models.DateField()
     tags = models.ManyToManyField(Tag, blank=True)
     images = models.ManyToManyField(Image, blank=True)
 
@@ -77,9 +77,10 @@ class Collaborator(models.Model):
 
 class Event(models.Model):
     title = models.CharField(max_length=200)
-    work = models.ForeignKey(Work, blank=True)
-    date = models.DateTimeField()
     venue = models.ForeignKey(Venue)
+    date = models.DateTimeField()
+    work = models.ManyToManyField(Work, blank=True)
+    other = models.CharField(max_length=200, blank=True)
 
     def add(self):
         self.save()
