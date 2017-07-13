@@ -18,8 +18,6 @@ class Image(models.Model):
     image = models.ImageField(upload_to='images')
     title = models.CharField(max_length=200, unique=True)
 
-    image_type = models.CharField(max_length=1)
-
     def add(self):
         self.save()
 
@@ -78,13 +76,10 @@ class Collaborator(models.Model):
 
 
 class Event(models.Model):
-    work = models.ForeignKey(Work, blank=True)
-    other = models.CharField(max_length=200, blank=True)
-
-    collaborators = models.ManyToManyField(Collaborator)
-    venue = models.ForeignKey(Venue)
     title = models.CharField(max_length=200)
+    work = models.ForeignKey(Work, blank=True)
     date = models.DateTimeField()
+    venue = models.ForeignKey(Venue)
 
     def add(self):
         self.save()

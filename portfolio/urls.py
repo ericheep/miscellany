@@ -9,5 +9,4 @@ urlpatterns = [
     url(r'^(?P<tag_slug>[-\w]+)/$', views.works, name='works'),
     url(r'^works/(?P<work_slug>[-\w]+)/$', views.work, name='work'),
     url(r'^miscellany/$', views.miscellany, name='miscellany'),
-    # url(r'^(?P<tag_slug>[-\w]+)/(?P<work_slug>[-\w]+)/$', views.filtered_works, name='work'),
 ]
