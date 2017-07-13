@@ -39,7 +39,7 @@
             <div id="text">
                 {{ work.text|markdownify|safe}}
             </div>
-            <div id="video">
+            <div id="videos">
                 {% for clip in clips %}
                     {% video clip.video as vid %}
                         {% video vid "small" %}

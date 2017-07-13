@@ -5,7 +5,7 @@
 #page {
     display:flex;
     flex-direction: row;
-    margin: 25px 25px;
+    margin: 50px 25px;
     justify-content: center;
 }
 
@@ -24,8 +24,6 @@
     margin-bottom: 15px;
     border: 3px;
     border-style: solid dashed solid solid;
-    background: red;
-    color: white;
     align-items: right;
 }
 
@@ -49,6 +47,7 @@
 #github {
     flex: 0 1 auto;
     align-self: flex-end;
+    margin-bottom: 15px;
 }
 
 #middle {
@@ -59,7 +58,8 @@
     margin: 0px 15px;
 }
 
-#video {
+#videos {
+    margin: 25px 25px;
     width: inherit;
     align-self: center;
 }
@@ -77,6 +77,8 @@
     flex: 0 1 auto;
     order: 1;
     display: flex;
+    border: 3px;
+    border-style: solid dashed solid solid;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -84,7 +86,7 @@
 
 #image {
     align-items: center;
-    margin-top: 15px;
+    padding: 5px 5px;
 }
 
 #right {
