@@ -21,7 +21,7 @@ function setup() {
 
     speed = 0.00005
     numPoints = int(random(4, 8));
-    numTracers = int(random(4, 8));
+    numTracers = int(random(2, 5));
 
     for (var j = 0; j < numTracers; j++) {
         var x = []
@@ -41,7 +41,7 @@ function draw() {
     inc = (inc + speed) % 1.0;
 
     stroke(255, 0, 0);
-    fill(0, 0, 0, 5);
+    fill(150, 150, 150, 5);
     for (var i = 0; i < numTracers; i++) {
         tracer[i].trace(inc % 1.0, 0.5);
     }

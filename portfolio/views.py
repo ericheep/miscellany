@@ -1,12 +1,16 @@
-from django.shortcuts import render, get_object_or_404
-# from django.views.generic import View
+import random
 
+from django.shortcuts import render, get_object_or_404
 from .forms import WorkForm, EventForm, VenueForm, ImageForm
 from .models import Work, Tag, Event, Venue, Image, Collaborator
 
 
 def index(request):
+
+    random_p5 = random.choice(['slow-shapes.js', 'paths.js'])
+
     context = {
+        'random_p5': random_p5,
     }
 
     return render(request, 'portfolio/index.html', context)
