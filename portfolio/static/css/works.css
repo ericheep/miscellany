@@ -29,8 +29,7 @@
     background: red;
 }
 
-/* work list */
-#work-item-list{
+#left {
     display: flex;
     flex-direction: column;
 }

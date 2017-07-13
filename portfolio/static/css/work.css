@@ -1,24 +1,35 @@
-#work-header{
-    display: flex;
+#blockquote {
+    font-weight: bold;
+}
+
+#page {
+    display:flex;
     flex-direction: row;
     margin: 25px 25px;
     justify-content: center;
 }
 
-#work-info {
+#left {
+    display: flex;
+    flex-direction: column;
+}
+
+#card {
     flex: 0 1 auto;
     flex-direction: column;
-    align-self: baseline;
+    align-self: flex-end;
     order: 0;
     padding: 5px 10px;
     margin: 0px 5px;
+    margin-bottom: 15px;
     border: 3px;
     border-style: solid dashed solid solid;
     background: red;
     color: white;
+    align-items: right;
 }
 
-#work-item {
+#title {
     display: flex;
     order: 0;
     flex: 0 1 auto;
@@ -28,23 +39,50 @@
     flex-direction: row;
 }
 
-#work-created-date {
+#created-date {
     order: 1;
     padding: 10px 5px;
     font-weight: normal;
     font-size: large;
 }
 
-#work-text {
-    max-width: 900px;
-    margin: 0px 15px;
+#github {
     flex: 0 1 auto;
-    order: 1;
+    align-self: flex-end;
+}
+
+#middle {
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0px 15px;
+}
+
+#text {
+    max-width: 900px;
+    flex: 0 1 auto;
+    order: 0;
     font-weight: 300;
     font-family: 'Kreon', serif;
     padding: 10px 10px;
 }
 
-#work-github {
+#images {
+    flex: 0 1 auto;
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+#image {
+    align-items: center;
+    margin-top: 15px;
+}
+
+#right {
     order: 2;
+    width: inherit;
 }

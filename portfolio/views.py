@@ -32,7 +32,7 @@ def works(request, tag_slug=None):
 def work(request, work_slug):
     work = get_object_or_404(Work, slug=work_slug)
     github = get_object_or_404(Image, image_type='G')
-    images = Image.objects.all().filter()
+    images = work.images.all()
 
     context = {
         'work': work,

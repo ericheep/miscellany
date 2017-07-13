@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load markdown_filter %}
+{% load embed_video_tags %}
+
 
 {% block css %}
     <link href="{% static "/css/work.css" %}" rel="stylesheet"/>
@@ -10,23 +12,33 @@
 {% block title %}ericheep | {{ work.title }} {% endblock %}
 
 {% block body %}
-
-    <div id="work-header">
-        <div id="work-info">
-            <div id="work-item">
-                {{ work.title }}
+    <div id="page">
+        <div id="left">
+            <div id="card">
+                <div id="title">
+                    {{ work.title }}
+                </div>
+                <div id="created-date">
+                    {{ work.created_date|date:"M, Y" }}
+                </div>
             </div>
-            <div id="work-created-date">
-                {{ work.created_date|date:"M, Y" }}
+            <div id="github">
+                {% if work.github %}
+                    <a href="{{ work.github }}"> <img src="{{ github.image.url }}" width=45 height=45></a>
+                {% endif %}
+            </div>
+            <div id="images">
+                {% for image in images %}
+                    <div id="image">
+                        <img src="{{ image.image.url }}" width=175>
+                    </div>
+                {% endfor %}
             </div>
         </div>
-        <div id="work-text">
-            {{ work.text|markdownify|safe}}
-        </div>
-        <div id="work-github">
-            {% if work.github %}
-                <a href="{{ work.github }}"> <img src="{{ github.image.url }}" width=45 height=45></a>
-            {% endif %}
+        <div id="middle">
+            <div id="text">
+                {{ work.text|markdownify|safe}}
+            </div>
         </div>
     </div>
 {% endblock %}

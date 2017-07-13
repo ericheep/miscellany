@@ -44,6 +44,7 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
+    'embed_video',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
