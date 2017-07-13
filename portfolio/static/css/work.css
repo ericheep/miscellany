@@ -59,6 +59,11 @@
     margin: 0px 15px;
 }
 
+#video {
+    width: inherit;
+    align-self: center;
+}
+
 #text {
     max-width: 900px;
     flex: 0 1 auto;

@@ -33,11 +33,13 @@ def work(request, work_slug):
     work = get_object_or_404(Work, slug=work_slug)
     github = get_object_or_404(Image, image_type='G')
     images = work.images.all()
+    clips = work.clips.all()
 
     context = {
         'work': work,
         'github': github,
         'images': images,
+        'clips': clips,
     }
 
     return render(request, 'portfolio/work.html', context)

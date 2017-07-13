@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Work, Event, Venue, Image, Tag, Collaborator
+from .models import Work, Event, Venue, Image, Tag, Collaborator, Video
 
 
 class WorkAdmin(admin.ModelAdmin):
@@ -17,6 +17,7 @@ class EventAdmin(admin.ModelAdmin):
 
 admin.site.register(Work, WorkAdmin)
 admin.site.register(Event, EventAdmin)
+admin.site.register(Video)
 admin.site.register(Venue)
 admin.site.register(Image)
 admin.site.register(Tag)
