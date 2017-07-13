@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # But then, watch me.
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'www.ericheep.com',
@@ -44,7 +44,6 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
-    'embed_video',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
