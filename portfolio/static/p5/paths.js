@@ -76,7 +76,7 @@ function Tracer(numPoints, numDots, x, y, len) {
 
                 fill(255, 0, 0);
                 stroke(255, 0, 0);
-                ellipse(this.v.x, this.v.y, 2, 2);
+                ellipse(this.v.x, this.v.y, 1, 1);
                 break;
             };
         };
