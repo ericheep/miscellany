@@ -20,20 +20,20 @@ function setup() {
 
     strokeWeight(0.1);
 
-    speed = 0.00005
+    speed = 0.000125
     numPoints = int(random(4, 8));
-    numTracers = int(random(2, 5));
+    numTracers = int(random(1000, 2000));
+
+    var x = []
+    var y = []
+
+    for (var i = 0; i < numPoints; i++) {
+        x.push(random(windowWidth));
+        y.push(random(windowHeight));
+    };
 
     for (var j = 0; j < numTracers; j++) {
-        var x = []
-        var y = []
-
-        for (var i = 0; i < numPoints; i++) {
-            x.push(random(windowWidth));
-            y.push(random(windowHeight));
-
-        };
-        tracer.push(new Tracer(numPoints, numDotsx, y, random(0.1, 0.5)));
+        tracer.push(new Tracer(numPoints, numDots, x, y, 0.5));
     }
 }
 
@@ -41,15 +41,14 @@ function draw() {
     background(255);
     inc = (inc + speed) % 1.0;
 
-    stroke(255, 0, 0);
-    fill(150, 150, 150, 5);
     for (var i = 0; i < numTracers; i++) {
-        tracer[i].trace(inc % 1.0, 0.5);
+        tracer[i].trace((inc + i * 0.01) % 1.0, 0.5);
     }
 }
 
 function Tracer(numPoints, numDots, x, y, len) {
     var invNumPoints = 1.0/numPoints;
+    var invNumDots = 1.0/numDots;
 
     this.p = new Array();
 
@@ -63,36 +62,23 @@ function Tracer(numPoints, numDots, x, y, len) {
     this.v = createVector(0.0, 0.0);
     this.d = createVector(0.0, 0.0);
 
-    this.drawVertex = function(pos, idx) {
-        where = (idx + 1) * invNumPoints;
-
-        this.v.set(this.p[(idx + 1) % numPoints].x, this.p[(idx + 1) % numPoints].y);
-        this.d = this.v.copy().sub(this.p[idx]);
-
-        this.d.x = this.d.x * (pos - where) * numPoints;
-        this.d.y = this.d.y * (pos - where) * numPoints;
-        this.v.add(this.d);
-
-        vertex(this.v.x, this.v.y);
-    };
-
     this.trace = function(pos) {
-        var a = Math.floor(pos * numPoints);
-        var b = Math.floor(((pos + len) * numPoints) % numPoints);
+        for (var i = 0; i < numPoints; i++) {
+            var where = (i + 1) * invNumPoints;
 
-        range = b - a;
-        if (a > b) {
-            range = numPoints + range;
-        }
+            if (pos < where) {
+                this.v.set(this.p[(i + 1) % numPoints].x, this.p[(i + 1) % numPoints].y);
+                this.d = this.v.copy().sub(createVector(this.p[i].x, this.p[i].y));
 
-        beginShape();
-        this.drawVertex(pos, a);
+                this.d.x = this.d.x * (pos - where) * numPoints;
+                this.d.y = this.d.y * (pos - where) * numPoints;
+                this.v.add(this.d);
 
-        for (var i = a + 1; i < (a + range) + 1; i++) {
-            vertex(this.p[i % numPoints].x, this.p[i % numPoints].y);
-        }
-
-        this.drawVertex((pos + len) % 1.0, b);
-        endShape();
+                fill(255, 0, 0);
+                stroke(255, 0, 0);
+                ellipse(this.v.x, this.v.y, 2, 2);
+                break;
+            };
+        };
     };
 };
