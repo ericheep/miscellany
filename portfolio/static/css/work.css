@@ -42,22 +42,6 @@
     font-size: large;
 }
 
-#images {
-    flex: 0 1 auto;
-    order: 1;
-    display: flex;
-    /*border: 3px;
-    border-style: solid dashed solid solid;*/
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-}
-
-#image {
-    align-items: center;
-    padding: 5px 5px;
-}
-
 /*middlish main*/
 #main {
     display: flex;
@@ -73,26 +57,53 @@
     order: 0;
     font-weight: 300;
     font-family: 'Kreon', serif;
+    margin-bottom: 15px;
 }
+
 
 #logos {
     display: flex;
-    width: 100%;
-    justify-content: flex-end;
+    flex: 0 1 auto;
+    order: 1;
+    margin-bottom: 15px;
+    justify-content: flex-start;
     flex-wrap: wrap;
     font-weight: bold;
     flex-direction: row;
 }
 
 #logo {
-    padding: 3px 3px;
-    margin: 15px 5px;
+    padding: 5px 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
     font-size: small;
     border: 2px;
-    border-style: none dashed dashed none;
+    border-style: none none dashed dashed;
 }
 
 #logo:hover {
     color: white;
     background: red;
+}
+
+#images {
+    flex: 1 0 auto;
+    order: 2;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+#image {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+}
+
+
+#bottom {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
 }
