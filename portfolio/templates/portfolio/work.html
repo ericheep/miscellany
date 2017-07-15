@@ -27,6 +27,11 @@
                 {{ work.text|markdownify|safe}}
             </div>
             <div id="logos">
+                {% if work.pdf %}
+                    <a target="_blank" href="{{ work.pdf.url }}">
+                        <div id="logo">pdf</div>
+                    </a>
+                {% endif %}
                 {% if work.github %}
                     <a target="_blank" href="{{ work.github }}">
                         <div id="logo">github </div>

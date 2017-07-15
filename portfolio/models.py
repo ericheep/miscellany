@@ -87,3 +87,8 @@ class Event(models.Model):
 
     def __str__(self):
         return '%s, %s @ %s' % (self.date, self.work, self.venue)
+
+
+class Audio(models.Model):
+    title = models.CharField(max_length=200)
+    upload = models.FileField(upload_to='audio')
