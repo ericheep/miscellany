@@ -20,9 +20,9 @@ function setup() {
 
     strokeWeight(0.1);
 
-    speed = 0.000125
+    speed = 0.0001
     numPoints = int(random(4, 8));
-    numTracers = int(random(1000, 2000));
+    numTracers = int(random(75, 125));
 
     var x = []
     var y = []
@@ -76,7 +76,7 @@ function Tracer(numPoints, numDots, x, y, len) {
 
                 fill(255, 0, 0);
                 stroke(255, 0, 0);
-                ellipse(this.v.x, this.v.y, 1, 1);
+                ellipse(this.v.x, this.v.y, 1.5, 1.5);
                 break;
             };
         };
