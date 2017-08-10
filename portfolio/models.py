@@ -17,7 +17,7 @@ class Tag(models.Model):
 class Image(models.Model):
     image = models.ImageField(upload_to='images')
     title = models.CharField(max_length=200, unique=True)
-    thumbnail = models.ImageField(upload_to='thumbs', editable=False)
+#    thumbnail = models.ImageField(upload_to='thumbs', editable=False)
 
 #    def save(self, *args, **kwargs):
 #        """
