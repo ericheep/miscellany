@@ -8,6 +8,9 @@
     <link href="https://fonts.googleapis.com/css?family=Kreon:300,400" rel="stylesheet">
 {% endblock %}
 
+{% block scripts %}
+{% endblock %}
+
 {% block title %}ericheep | {{ work.title }} {% endblock %}
 
 {% block body %}
@@ -28,8 +31,15 @@
             </div>
                 <div id="images">
                     {% for image in images %}
-                        <div id="image">
-                            <img src="{{ image.image.url }}" height=175>
+                        <div id="image" >
+                            <a href="#open-modal"><img src="{{ image.image.url }}" height=175><a>
+                            <div id="open-modal" class="modal-content">
+                                <div>
+                                    <a href="#close" title="close" class="close">
+                                        <img src="{{ image.image.url }}" width=800>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>
