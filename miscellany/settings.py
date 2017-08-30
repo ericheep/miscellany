@@ -46,10 +46,13 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'storages',
 ]
 
-INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
+THIRD_PARTY_APPS = [
+    'storages'
+]
+
+INSTALLED_APPS = PROJECT_APPS + DJANGO_APPS + THIRD_PARTY_APPS
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
@@ -88,15 +91,15 @@ AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 AWS_S3_REGION_NAME = os.environ['AWS_S3_REGION_NAME']
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ['MISC_SECRET_KEY']
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['DB_NAME'],
-        'USER': os.environ['DB_USER'],
-        'HOST': os.environ['DB_HOST'],
-        'PASSWORD': os.environ['DB_PASSWORD'],
+        'NAME': os.environ['MISC_DB_NAME'],
+        'USER': os.environ['MISC_DB_USER'],
+        'HOST': os.environ['MISC_DB_HOST'],
+        'PASSWORD': os.environ['MISC_DB_PASSWORD'],
     }
 }
 
