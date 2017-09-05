@@ -1,34 +1,27 @@
 /* whole page */
 #page {
     display:flex;
-    flex-direction: row;
-    margin: 50px 25px;
-    justify-content: flex-start;
-}
-
-/* left side bar*/
-#sidebar {
-    display: flex;
+    flex: 0 1 auto;
     flex-direction: column;
+    margin: 50px auto;
 }
 
 #card {
+    display: flex;
     flex: 0 1 auto;
-    flex-direction: column;
-    align-self: flex-end;
+    flex-direction: row;
+    max-width: 950px;
     order: 0;
     padding: 5px 10px;
-    margin: 0px 5px;
+    margin: 0px 25px;
     margin-bottom: 15px;
     border: 3px;
     border-style: solid dashed solid solid;
-    align-items: right;
+    justify-content: space-between;
 }
 
 #title {
-    display: flex;
     order: 0;
-    flex: 0 1 auto;
     margin: 5px 5px;
     font-weight: bold;
     font-size: large;
@@ -37,7 +30,7 @@
 
 #created-date {
     order: 1;
-    padding: 10px 5px;
+    padding: 5px 5px;
     font-weight: normal;
     font-size: large;
 }
@@ -48,7 +41,7 @@
     flex: 0 1 auto;
     flex-direction: column;
     flex-wrap: wrap;
-    margin: 0px 25px;
+    margin: 0px 50px;
 }
 
 #text {
