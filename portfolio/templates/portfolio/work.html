@@ -32,14 +32,7 @@
                 <div id="images">
                     {% for image in images %}
                         <div id="image" >
-                            <a href="#open-modal"><img src="{{ image.image.url }}" height=175><a>
-                            <div id="open-modal" class="modal-content">
-                                <div>
-                                    <a href="#close" title="close" class="close">
-                                        <img src="{{ image.image.url }}" width=800>
-                                    </a>
-                                </div>
-                            </div>
+                            <a target="_blank" href="{{image.image.url}}"><img src="{{ image.image.url }}" height=175><a>
                         </div>
                     {% endfor %}
                 </div>
