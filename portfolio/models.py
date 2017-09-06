@@ -35,6 +35,7 @@ class Work(models.Model):
     images = models.ManyToManyField(Image, blank=True)
 
     featured = models.BooleanField(default=True)
+    archive = models.FileField(upload_to='archive', blank=True)
 
     pdf = models.FileField(upload_to='pdfs', blank=True)
     vimeo = models.URLField(blank=True)

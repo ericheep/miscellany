@@ -36,6 +36,11 @@
             </div>
 
             <div id="logos">
+                {% if work.archive %}
+                    <a href="{{ work.archive.url }}">
+                        <div id="logo">board files</div>
+                    </a>
+                {% endif %}
                 {% if work.pdf %}
                     <a target="_blank" href="{{ work.pdf.url }}">
                         <div id="logo">pdf</div>
