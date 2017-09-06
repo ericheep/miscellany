@@ -23,45 +23,43 @@
                 ({{ work.created_date|date:"M, Y" }})
             </div>
         </div>
-        <div id="main">
-            <div id="text">
-                {{ work.text|markdownify|safe}}
-            </div>
-            <div id="images">
-                {% for image in images %}
-                    <div id="image" >
-                        <a target="_blank" href="{{image.image.url}}"><img src="{{ image.image.url }}" height=175><a>
-                    </div>
-                {% endfor %}
-            </div>
+        <div id="text">
+            {{ work.text|markdownify|safe}}
+        </div>
+        <div id="images">
+            {% for image in images %}
+                <div id="image" >
+                    <a target="_blank" href="{{image.image.url}}"><img src="{{ image.image.url }}" height=175><a>
+                </div>
+            {% endfor %}
+        </div>
 
-            <div id="logos">
-                {% if work.archive %}
-                    <a href="{{ work.archive.url }}">
-                        <div id="logo">board files</div>
-                    </a>
-                {% endif %}
-                {% if work.pdf %}
-                    <a target="_blank" href="{{ work.pdf.url }}">
-                        <div id="logo">pdf</div>
-                    </a>
-                {% endif %}
-                {% if work.github %}
-                    <a target="_blank" href="{{ work.github }}">
-                        <div id="logo">github </div>
-                    </a>
-                {% endif %}
-                {% if work.vimeo %}
-                    <a target="_blank" href="{{ work.vimeo }}">
-                        <div id="logo">vimeo </div>
-                    </a>
-                {% endif %}
-                {% if work.youtube %}
-                    <a target="_blank" href="{{ work.youtube }}">
-                        <div id="logo">youtube </div>
-                    </a>
-                {% endif %}
-            </div>
+        <div id="logos">
+            {% if work.archive %}
+                <a href="{{ work.archive.url }}">
+                    <div id="logo">board files</div>
+                </a>
+            {% endif %}
+            {% if work.pdf %}
+                <a target="_blank" href="{{ work.pdf.url }}">
+                    <div id="logo">pdf</div>
+                </a>
+            {% endif %}
+            {% if work.github %}
+                <a target="_blank" href="{{ work.github }}">
+                    <div id="logo">github </div>
+                </a>
+            {% endif %}
+            {% if work.vimeo %}
+                <a target="_blank" href="{{ work.vimeo }}">
+                    <div id="logo">vimeo </div>
+                </a>
+            {% endif %}
+            {% if work.youtube %}
+                <a target="_blank" href="{{ work.youtube }}">
+                    <div id="logo">youtube </div>
+                </a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
