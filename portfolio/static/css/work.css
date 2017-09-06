@@ -3,21 +3,21 @@
     display:flex;
     flex: 0 1 auto;
     flex-direction: column;
-    margin: 50px auto;
+    margin: 25px auto;
 }
 
 #card {
     display: flex;
     flex: 0 1 auto;
     flex-direction: row;
-    max-width: 950px;
+    max-width: 475px;
     order: 0;
     padding: 5px 10px;
     margin: 0px 25px;
     margin-bottom: 15px;
     border: 3px;
     border-style: solid dashed solid solid;
-    justify-content: space-between;
+    justify-content: left;
 }
 
 #title {
@@ -80,12 +80,13 @@
 }
 
 #images {
-    flex: 1 0 auto;
+    flex: 0 1 auto;
     order: 2;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+    max-width: 900px;
 }
 
 #image {
