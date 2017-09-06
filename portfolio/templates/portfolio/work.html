@@ -23,15 +23,9 @@
                 ({{ work.created_date|date:"M, Y" }})
             </div>
         </div>
+
         <div id="text">
             {{ work.text|markdownify|safe}}
-        </div>
-        <div id="images">
-            {% for image in images %}
-                <div id="image" >
-                    <a target="_blank" href="{{image.image.url}}"><img src="{{ image.image.url }}" height=175><a>
-                </div>
-            {% endfor %}
         </div>
 
         <div id="logos">
@@ -60,6 +54,14 @@
                     <div id="logo">youtube </div>
                 </a>
             {% endif %}
+        </div>
+
+        <div id="images">
+            {% for image in images %}
+                <div id="image" >
+                    <a target="_blank" href="{{image.image.url}}"><img src="{{ image.image.url }}" height=175><a>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
