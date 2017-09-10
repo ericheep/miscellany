@@ -2,6 +2,18 @@ from django.db import models
 from django.template.defaultfilters import slugify
 
 
+class Audio(models.Model):
+    title = models.CharField(max_length=200, null=True)
+    text = models.TextField(blank=True)
+    audio = models.FileField(upload_to='audio', blank=True)
+
+    def __str__(self):
+        return self.name
+
+    def add(self):
+        self.save()
+
+
 class Tag(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(null=True, blank=True, editable=True)
@@ -35,12 +47,14 @@ class Work(models.Model):
     images = models.ManyToManyField(Image, blank=True)
 
     featured = models.BooleanField(default=True)
-    archive = models.FileField(upload_to='archive', blank=True)
 
+    archive = models.FileField(upload_to='archive', blank=True)
     pdf = models.FileField(upload_to='pdfs', blank=True)
     vimeo = models.URLField(blank=True)
     youtube = models.URLField(blank=True)
     github = models.URLField(blank=True)
+
+    audio = models.ManyToManyField(Audio, blank=True)
 
     # later at a artify thing to make it grayscale maybe, some sorta image script
     # would be cool
@@ -88,8 +102,3 @@ class Event(models.Model):
 
     def __str__(self):
         return '%s, %s @ %s' % (self.date, self.work, self.venue)
-
-
-class Audio(models.Model):
-    title = models.CharField(max_length=200)
-    upload = models.FileField(upload_to='audio')
