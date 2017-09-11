@@ -48,7 +48,7 @@
 #audio {
     flex: 0 1 auto;
     order: 2;
-    margin: 0px 25px;
+    margin: 5px 25px;
 }
 
 #audio-title {
