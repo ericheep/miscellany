@@ -8,7 +8,7 @@ class Audio(models.Model):
     audio = models.FileField(upload_to='audio', blank=True)
 
     def __str__(self):
-        return self.name
+        return self.title
 
     def add(self):
         self.save()

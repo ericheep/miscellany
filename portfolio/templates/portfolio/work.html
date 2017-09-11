@@ -28,6 +28,26 @@
             {{ work.text|markdownify|safe}}
         </div>
 
+        <div id="audio">
+            {% for audio in audios %}
+                {% if audio.title %}
+                    <div id="audio-title">
+                        {{audio.title}}
+                    </div>
+                {% endif %}
+                {% if audio.text %}
+                    <div id="audio-text">
+                        {{audio.text}}
+                    </div>
+                {% endif %}
+                <div id="audio-player">
+                    <audio controls autoplay>
+                        <source src={{audio.audio.url}}>
+                    </audio>
+                </div>
+            {% endfor %}
+        </div>
+
         <div id="logos">
             {% if work.archive %}
                 <a href="{{ work.archive.url }}">

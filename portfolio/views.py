@@ -35,10 +35,12 @@ def works(request, tag_slug=None):
 def work(request, work_slug):
     work = get_object_or_404(Work, slug=work_slug)
     images = work.images.all()
+    audios = work.audio.all()
 
     context = {
         'work': work,
         'images': images,
+        'audios': audios,
     }
 
     return render(request, 'portfolio/work.html', context)
