@@ -28,8 +28,8 @@
             {{ work.text|markdownify|safe}}
         </div>
 
-        <div id="audio">
-            {% for audio in audios %}
+        {% for audio in audios %}
+            <div id="audio">
                 {% if audio.title %}
                     <div id="audio-title">
                         {{audio.title}}
@@ -45,8 +45,8 @@
                         <source src={{audio.audio.url}}>
                     </audio>
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
 
         <div id="logos">
             {% if work.archive %}
