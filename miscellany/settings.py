@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '178.128.77.9',
@@ -88,7 +88,8 @@ WSGI_APPLICATION = 'miscellany.wsgi.application'
 AWS_STORAGE_BUCKET_NAME = os.environ['MISC_AWS_STORAGE_BUCKET_NAME']
 AWS_S3_REGION_NAME = os.environ['MISC_AWS_S3_REGION_NAME']
 AWS_SECRET_ACCESS_KEY = os.environ['MISC_AWS_SECRET_ACCESS_KEY']
-AWS_ACCESS_ID = os.environ['MISC_AWS_ACCESS_KEY_ID']
+AWS_ACCESS_KEY_ID = os.environ['MISC_AWS_ACCESS_KEY_ID']
+
 SECRET_KEY = os.environ['MISC_SECRET_KEY']
 
 DATABASES = {
