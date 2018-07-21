@@ -20,16 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-
-if (os.environ['INSTANCE'] == 'aws'):
-    DEBUG = False
-elif (os.environ['INSTANCE'] == 'local'):
-    DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
-    'www.ericheep.com',
+    '178.128.77.9',
     '127.0.0.1',
     'localhost',
+    'www.ericheep.com',
 ]
 
 # Application definition
@@ -87,6 +84,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'miscellany.wsgi.application'
 
+# amazon s3
 AWS_STORAGE_BUCKET_NAME = os.environ['MISC_AWS_STORAGE_BUCKET_NAME']
 AWS_S3_REGION_NAME = os.environ['MISC_AWS_S3_REGION_NAME']
 
