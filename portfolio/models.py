@@ -92,7 +92,7 @@ class Collaborator(models.Model):
 
 class Event(models.Model):
     title = models.CharField(max_length=200)
-    venue = models.ForeignKey(Venue)
+    venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     date = models.DateTimeField()
     work = models.ManyToManyField(Work, blank=True)
     other = models.CharField(max_length=200, blank=True)
