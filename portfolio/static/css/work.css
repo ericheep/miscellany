@@ -16,7 +16,7 @@
     margin: 0px 25px;
     margin-bottom: 15px;
     border: 3px;
-    border-style: solid dashed solid solid;
+    border-style: solid dotted solid solid;
     justify-content: left;
 }
 
@@ -39,27 +39,8 @@
     max-width: 900px;
     flex: 0 1 auto;
     order: 1;
-    font-weight: 300;
-    font-family: 'Kreon', serif;
     margin: 0px 50px;
     margin-bottom: 15px;
-}
-
-#audio {
-    flex: 0 1 auto;
-    order: 2;
-    margin: 5px 25px;
-}
-
-#audio-title {
-    font-weight: bold;
-}
-
-#audio-text {
-    max-width: 900px;
-    font-weight: 300;
-    font-family: 'Kreon', serif;
-    margin: 5px 0px;
 }
 
 #logos {

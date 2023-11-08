@@ -2,20 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3daeac0-ab4c-41dd-ac55-83c306a01426" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/portfolio/admin.py" afterPath="$PROJECT_DIR$/portfolio/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/portfolio/models.py" afterPath="$PROJECT_DIR$/portfolio/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/portfolio/static/css/style.css" afterPath="$PROJECT_DIR$/portfolio/static/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/portfolio/templates/portfolio/work.html" afterPath="$PROJECT_DIR$/portfolio/templates/portfolio/work.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/miscellany.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/miscellany.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miscellany/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/miscellany/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miscellany/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/miscellany/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/static/css/about.css" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/static/css/about.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/static/css/miscellany.css" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/static/css/miscellany.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/static/css/work.css" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/static/css/work.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/static/css/works.css" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/static/css/works.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/templates/portfolio/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/templates/portfolio/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/templates/portfolio/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/templates/portfolio/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/templates/portfolio/works.html" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/templates/portfolio/works.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/portfolio/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
@@ -45,10 +52,17 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
   <component name="ProjectFrameBounds">
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
+  <component name="ProjectId" id="2XrrNTwuLUK6oHHyFqeQZPmZLME" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -118,26 +132,21 @@
       </pane>
     </panes>
   </component>
-  <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="FullScreen" value="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/Users/eheep/git/miscellany",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="a3daeac0-ab4c-41dd-ac55-83c306a01426" name="Default" comment="" />
@@ -145,6 +154,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1497219921256</updated>
+      <workItem from="1699398001844" duration="163000" />
     </task>
     <servers />
   </component>
@@ -171,12 +181,12 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager />
-    <watches-manager />
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/miscellany$models.coverage" NAME="models Coverage Results" MODIFIED="1699398134375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/portfolio" />
+    <SUITE FILE_PATH="coverage/miscellany$apps.coverage" NAME="apps Coverage Results" MODIFIED="1699398151580" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/portfolio" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/portfolio/admin.py">

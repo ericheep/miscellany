@@ -1,14 +1,46 @@
 {% extends 'base.html' %}
-
-{% block title %} ericheep {% endblock %}
-
-{% block header %} ericheep {% endblock %}
+{% load static %}
 
 {% block css %}
-    <script src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.js"></script>
-    <script src="/static/p5/{{ random_p5 }}"></script>
+<link href="https://fonts.googleapis.com/css?family=Kreon:300,400" rel="stylesheet">
+<link href="{% static "/css/works.css" %}" rel="stylesheet"/>
 {% endblock %}
 
-{% block body%}
+{% block title %}eric heep{% endblock %}
+
+{% block body %}
+<div id="work-page">
+	<div id="work-tags" >
+		{% for tag in tags %}
+		{% if tag.slug == tag_slug %}
+		<a href="/works/"><div class="selected" id="work-tag">{{ tag }}</div></a>
+		{% else %}
+		<a href="/{{ tag.slug }}/"><div id="work-tag">{{ tag }}</div></a>
+		{% endif %}
+		{% endfor %}
+	</div>
+
+	<div id="work-list">
+		{% for work in works %}
+		<div id="work-card">
+			<a id="work-item" href="/works/{{ work.slug }}/">
+				<div id="work-thumbnail">
+					{% if work.mainImage %}
+					<img src="{{  work.mainImage.url }}" width=317>
+					{% endif %}
+				</div>
+				<div id="work-title">
+					<b>{{ work.title }}</b>
+					({{ work.created_date|date:"Y" }})
+					<br>
+				</div>
+				<div id="work-abstract">
+					{{ work.abstract }}
+					</br>
+				</div>
+			</a>
+		</div>
+		{% endfor %}
+	</div>
+</div>
 {% endblock %}

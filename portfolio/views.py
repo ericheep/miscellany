@@ -5,12 +5,17 @@ from .forms import WorkForm, EventForm, VenueForm, ImageForm
 from .models import Work, Tag, Event, Venue, Image, Collaborator
 
 
-def index(request):
+def index(request, tag_slug=None):
+    works = Work.objects.all().filter(featured=True).order_by('-created_date')
+    tags = Tag.objects.all()
 
-    random_p5 = random.choice(['slow-shapes.js', 'paths.js'])
+    if tag_slug is not None:
+        works = works.filter(tags__slug=tag_slug)
 
     context = {
-        'random_p5': random_p5,
+        'works': works,
+        'tags': tags,
+        'tag_slug': tag_slug,
     }
 
     return render(request, 'portfolio/index.html', context)
@@ -29,7 +34,7 @@ def works(request, tag_slug=None):
         'tag_slug': tag_slug,
     }
 
-    return render(request, 'portfolio/works.html', context)
+    return render(request, 'portfolio/index.html', context)
 
 
 def work(request, work_slug):
@@ -56,7 +61,7 @@ def events(request):
     return render(request, 'portfolio/events.html', context)
 
 
-def about(request):
+def info(request):
     profile = get_object_or_404(Work, title="Profile")
     headshot = get_object_or_404(Image, title='profile')
     collaborators = Collaborator.objects.all().order_by('name')
@@ -67,7 +72,7 @@ def about(request):
         'collaborators': collaborators,
     }
 
-    return render(request, 'portfolio/about.html', context)
+    return render(request, 'portfolio/info.html', context)
 
 
 def miscellany(request):

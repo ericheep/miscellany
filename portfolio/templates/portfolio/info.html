@@ -2,8 +2,11 @@
 {% load static %}
 {% load markdown_filter %}
 
-{% block css %} <link href="{% static "/css/about.css" %}" rel="stylesheet"/> {% endblock %}
-{% block title %}ericheep | about{% endblock %}
+{% block css %}
+	<link href="https://fonts.googleapis.com/css?family=Kreon:300,400" rel="stylesheet">
+	<link href="{% static "/css/info.css" %}" rel="stylesheet"/>
+{% endblock %}
+{% block title %}eric heep | info{% endblock %}
 
 {% block body %}
     <div id="page">
@@ -32,22 +35,5 @@
             </div>
         </div>
         <div>
-            <p> He also works with these artists. </p>
-        </div>
-        <div id="collaborators">
-            {% for collaborator in collaborators %}
-                {% if collaborator.url %}
-                    <a href={{ collaborator.url }} target="_blank">
-                        <div id="collaborator-url">
-                            {{ collaborator.name }}
-                        </div>
-                    </a>
-                {% else %}
-                    <div id="collaborator">
-                        {{ collaborator.name }}
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
     </div>
 {% endblock %}

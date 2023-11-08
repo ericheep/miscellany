@@ -45,6 +45,7 @@ class Work(models.Model):
     created_date = models.DateField()
     tags = models.ManyToManyField(Tag, blank=True)
     images = models.ManyToManyField(Image, blank=True)
+    mainImage = models.ImageField(upload_to='images', blank=True)
 
     featured = models.BooleanField(default=True)
 
@@ -55,10 +56,6 @@ class Work(models.Model):
     github = models.URLField(blank=True)
 
     audio = models.ManyToManyField(Audio, blank=True)
-
-    # later at a artify thing to make it grayscale maybe, some sorta image script
-    # would be cool
-    thumbnail = models.ImageField(upload_to='thumbnails', blank=True)
 
     def add(self):
         self.save()

@@ -17,29 +17,6 @@
     padding-left: 15px;
 }
 
-
-#collaborators {
-    display: flex;
-    width: 50%;
-    flex-wrap: wrap;
-    font-weight: bold;
-    flex-direction: row;
-}
-
-#collaborator, #collaborator-url {
-    flex: 0 1 auto;
-    border: 2px;
-    border-style: dashed none none dashed;
-    padding: 3px 5px;
-    margin-right: 12px;
-    margin-bottom: 12px;
-}
-
-#collaborator-url:hover {
-    background: red;
-    color: white;
-}
-
 #logos {
     display: flex;
     width: 100%;

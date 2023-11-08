@@ -3,31 +3,39 @@ a {
     text-decoration: none;
 }
 
+#text {
+    order: 1;
+    padding-left: 15px;
+}
+
 div {
-    font-family: 'Ubuntu Mono', monospace;
+    /*font-weight: 300;*/
+    font-family: 'Kreon', serif;
 }
 
 h1 {
     margin: 0px;
 }
 
+
 .nav-item {
     flex: 0 0 auto;
     justify-content: center;
-    outline: solid;
-    padding: 5px 6px;
+    border: 2px;
+    border-style: dotted;
+    padding: 4px 6px;
     margin: 0px 5px;
 }
 
 .nav-item:hover {
-    background: red;
+    background: black;
     color: white;
 }
 
 #header {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: baseline;
     margin-top: 15px;
     margin-left: 25px;
 }
@@ -39,14 +47,6 @@ h1 {
     margin-right: 10px;
 }
 
-#about {
-    order: 1;
-}
-
-#works {
-    order: 2;
-}
-
-#events {
-    order: 3;
+#email {
+  margin-left: 6px;
 }
