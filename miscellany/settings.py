@@ -23,10 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '178.128.77.9',
+    '147.182.195.146',
     '127.0.0.1',
     'localhost',
     'www.ericheep.com',
+    'ericheep.com',
 ]
 
 # Application definition
