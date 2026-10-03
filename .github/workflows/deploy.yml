@@ -14,8 +14,8 @@ jobs:
           SSH_KEY: ${{ secrets.DROPLET_SSH_KEY }}
           HOST: ${{ secrets.DROPLET_HOST }}
         run: |
+          echo "Host is ${#HOST} characters (expected 14)"
           mkdir -p ~/.ssh
           echo "$SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts
-          ssh -i ~/.ssh/deploy_key misc@"$HOST"
+          ssh -v -o StrictHostKeyChecking=accept-new -i ~/.ssh/deploy_key misc@"$HOST"
