@@ -55,7 +55,8 @@
     flex-direction: row;
 }
 
-#logo {
+/* buttons (download, pdf, github...) */
+.logo {
     padding: 5px 5px;
     margin-right: 10px;
     margin-bottom: 10px;
@@ -64,7 +65,7 @@
     border-style: none none dashed dashed;
 }
 
-#logo:hover {
+.logo:hover {
     color: white;
     background: red;
 }
@@ -80,7 +81,7 @@
     margin: 0px 25px;
 }
 
-#image {
+.image {
     padding-top: 5px;
     padding-bottom: 5px;
     padding-right: 5px;
@@ -95,7 +96,82 @@
 .body-video iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; }
 .body-soundcloud iframe { width: 100%; height: 166px; border: 0; }
 .body-image img { max-width: 100%; height: auto; }
-.body-audio audio { width: 100%; }
 
 .body-image, .body-audio { margin: 1.5em 0; }
 .body-image figcaption, .body-audio figcaption { font-size: 0.9em; opacity: 0.75; margin-top: 0.4em; }
+
+/* audio player (see portfolio/player.js) */
+.audio { margin: 0px 50px 15px 50px; max-width: 900px; }
+.audio-title { font-weight: bold; margin-bottom: 4px; }
+.audio-text { margin-bottom: 6px; }
+
+.player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 600px;
+    font-family: 'Kreon', serif;
+}
+
+.player-toggle {
+    font: inherit;
+    font-size: small;
+    font-weight: bold;
+    color: black;
+    background: none;
+    min-width: 4.5em;
+    padding: 5px 5px;
+    border: 2px black;
+    border-style: none none dashed dashed;
+    cursor: pointer;
+}
+
+.player-toggle:hover,
+.player.playing .player-toggle {
+    color: black;
+    background: thistle;
+}
+
+.player-toggle:disabled {
+    color: grey;
+    background: none;
+    cursor: default;
+}
+
+.player-track {
+    position: relative;
+    flex: 1 1 auto;
+    height: 14px;
+    border: 2px dotted black;
+    cursor: pointer;
+}
+
+.player-track:hover,
+.player-track:focus-visible {
+    background: repeating-linear-gradient(
+        135deg,
+        lightgrey,
+        lightgrey 1px,
+        white 1px,
+        white 5px
+    );
+    outline: none;
+}
+
+.player-fill {
+    height: 100%;
+    width: 0;
+    background: repeating-linear-gradient(
+        135deg,
+        black,
+        black 1px,
+        white 1px,
+        white 4px
+    );
+}
+
+.player-time {
+    font-size: small;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
