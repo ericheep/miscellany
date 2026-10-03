@@ -1,12 +1,11 @@
-from django.urls import path
-from . import views
+"""miscellany URL Configuration
+"""
+
+from django.urls import include, re_path
+from django.contrib import admin
+
 
 urlpatterns = [
-    path('', views.works, name='index'),
-    path('info/', views.info, name='info'),
-    path('events/', views.events, name='events'),
-    path('works/', views.works, name='works'),
-    path('works/<slug:work_slug>/', views.work, name='work'),
-    # Keep last: matches any single-word path as a tag
-    path('<slug:tag_slug>/', views.works, name='works'),
+    re_path(r'^admin/', admin.site.urls),
+    re_path(r'', include('portfolio.urls')),
 ]
