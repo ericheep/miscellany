@@ -108,7 +108,9 @@ def _block(html):
 @register.filter
 def render_body(text):
     # Only the site owner writes this through the admin, so raw HTML is allowed.
-    text = text or ''
+    # Browsers submit textareas with \r\n line endings; normalize so the
+    # line-based patterns below match.
+    text = (text or '').replace('\r\n', '\n').replace('\r', '\n')
     text = SHORTCODE.sub(lambda m: _block(_shortcode(m.group(1), m.group(2), m.group(3))), text)
     text = BARE_URL.sub(
         lambda m: _block(html) if (html := _url_embed(m.group(1))) else m.group(0), text)
