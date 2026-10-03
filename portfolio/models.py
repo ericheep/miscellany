@@ -36,6 +36,11 @@ class Work(models.Model):
     slug = models.SlugField(null=True, blank=True, editable=False)
     abstract = models.TextField(max_length=200)
     text = models.TextField(blank=True)
+    body = models.TextField(
+        blank=True,
+        help_text='New-style page in Markdown with {image: title}, {audio: title}, '
+                  '{vimeo: id} and {youtube: id} lines. When filled in, it replaces the old layout.',
+    )
     created_date = models.DateField()
     tags = models.ManyToManyField(Tag, blank=True)
     images = models.ManyToManyField(Image, blank=True)
