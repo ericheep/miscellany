@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '147.182.195.146',
+    '134.122.29.200',
     '127.0.0.1',
     'localhost',
     'www.ericheep.com',
@@ -46,13 +46,7 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-THIRD_PARTY_APPS = [
-    'storages',
-]
-
-INSTALLED_APPS = PROJECT_APPS + DJANGO_APPS + THIRD_PARTY_APPS
-
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+INSTALLED_APPS = PROJECT_APPS + DJANGO_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -84,12 +78,6 @@ TEMPLATES = [
 
 
 WSGI_APPLICATION = 'miscellany.wsgi.application'
-
-# amazon s3
-AWS_STORAGE_BUCKET_NAME = os.environ['MISC_AWS_STORAGE_BUCKET_NAME']
-AWS_S3_REGION_NAME = os.environ['MISC_AWS_S3_REGION_NAME']
-AWS_SECRET_ACCESS_KEY = os.environ['MISC_AWS_SECRET_ACCESS_KEY']
-AWS_ACCESS_KEY_ID = os.environ['MISC_AWS_ACCESS_KEY_ID']
 
 SECRET_KEY = os.environ['MISC_SECRET_KEY']
 
@@ -139,7 +127,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-MEDIA_ROOT = '/media/'
+STORAGES = {
+    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+    "staticfiles": {"BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"},
+}
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'www', 'media')
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'www', 'static')
