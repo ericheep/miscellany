@@ -91,3 +91,11 @@
     display: flex;
     flex-direction: row;
 }
+
+.body-video iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; }
+.body-soundcloud iframe { width: 100%; height: 166px; border: 0; }
+.body-image img { max-width: 100%; height: auto; }
+.body-audio audio { width: 100%; }
+
+.body-image, .body-audio { margin: 1.5em 0; }
+.body-image figcaption, .body-audio figcaption { font-size: 0.9em; opacity: 0.75; margin-top: 0.4em; }

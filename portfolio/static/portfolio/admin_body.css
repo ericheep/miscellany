@@ -1,0 +1,25 @@
+textarea.body-editor {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  width: 100%;
+  max-width: 60em;
+  box-sizing: border-box;
+}
+
+textarea.body-editor.body-dragging {
+  outline: 3px dashed var(--primary, #79aec8);
+  outline-offset: 2px;
+}
+
+.body-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.body-hint {
+  color: var(--body-quiet-color, #666);
+  font-size: 12px;
+}
