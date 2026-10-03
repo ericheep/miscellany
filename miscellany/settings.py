@@ -30,6 +30,9 @@ ALLOWED_HOSTS = [
     'ericheep.com',
 ]
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+CSRF_TRUSTED_ORIGINS = ['https://ericheep.com', 'https://www.ericheep.com']
+
 # Application definition
 
 PROJECT_APPS = [
