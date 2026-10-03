@@ -12,11 +12,19 @@ textarea.body-editor.body-dragging {
   outline-offset: 2px;
 }
 
+.body-editor-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100%;
+  width: 100%;
+  max-width: 60em;
+}
+
 .body-toolbar {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .body-hint {

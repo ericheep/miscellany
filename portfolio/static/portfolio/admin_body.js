@@ -132,7 +132,13 @@
     hint.textContent = 'Drag or paste images and audio into the box. Add a caption with {image: name | Caption}.';
 
     bar.append(btn, hint);
-    ta.insertAdjacentElement('afterend', bar);
+
+    // The admin lays a field's contents out in a row, so stack the toolbar
+    // above the textarea inside a wrapper of our own.
+    const wrap = document.createElement('div');
+    wrap.className = 'body-editor-wrap';
+    ta.parentNode.insertBefore(wrap, ta);
+    wrap.append(bar, ta);
   }
 
   document.addEventListener('DOMContentLoaded', () => {
