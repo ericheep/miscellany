@@ -128,8 +128,13 @@
 
 .player-toggle:hover,
 .player.playing .player-toggle {
-    color: black;
-    background: thistle;
+    background: repeating-linear-gradient(
+        135deg,
+        lightgrey,
+        lightgrey 1px,
+        white 1px,
+        white 5px
+    );
 }
 
 .player-toggle:disabled {
