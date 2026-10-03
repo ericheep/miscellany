@@ -8,10 +8,7 @@ class Audio(models.Model):
     audio = models.FileField(upload_to='audio', blank=True)
 
     def __str__(self):
-        return self.title
-
-    def add(self):
-        self.save()
+        return self.title or f'Audio #{self.pk}'
 
 
 class Tag(models.Model):
@@ -20,7 +17,7 @@ class Tag(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
-        super(Tag, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
@@ -29,9 +26,6 @@ class Tag(models.Model):
 class Image(models.Model):
     image = models.ImageField(upload_to='images')
     title = models.CharField(max_length=200, unique=True)
-
-    def add(self):
-        self.save()
 
     def __str__(self):
         return self.title
@@ -57,12 +51,9 @@ class Work(models.Model):
 
     audio = models.ManyToManyField(Audio, blank=True)
 
-    def add(self):
-        self.save()
-
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
-        super(Work, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
@@ -71,9 +62,6 @@ class Work(models.Model):
 class Venue(models.Model):
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=200)
-
-    def add(self):
-        self.save()
 
     def __str__(self):
         return self.name
@@ -94,8 +82,8 @@ class Event(models.Model):
     work = models.ManyToManyField(Work, blank=True)
     other = models.CharField(max_length=200, blank=True)
 
-    def add(self):
-        self.save()
-
     def __str__(self):
-        return '%s, %s @ %s' % (self.date, self.work, self.venue)
+        if not self.pk:
+            return self.title
+        works = ', '.join(w.title for w in self.work.all()) or self.other or self.title
+        return f'{self.date:%Y-%m-%d}, {works} @ {self.venue}'

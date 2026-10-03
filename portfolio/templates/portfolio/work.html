@@ -25,24 +25,24 @@
         </div>
 
         <div id="text">
-            {{ work.text|markdownify|safe}}
+            {{ work.text|markdownify|safe }}
         </div>
 
         {% for audio in audios %}
-            <div id="audio">
+            <div class="audio">
                 {% if audio.title %}
-                    <div id="audio-title">
-                        {{audio.title}}
+                    <div class="audio-title">
+                        {{ audio.title }}
                     </div>
                 {% endif %}
                 {% if audio.text %}
-                    <div id="audio-text">
-                        {{audio.text}}
+                    <div class="audio-text">
+                        {{ audio.text }}
                     </div>
                 {% endif %}
-                <div id="audio-player">
+                <div class="audio-player">
                     <audio controls>
-                        <source src={{audio.audio.url}}>
+                        <source src="{{ audio.audio.url }}">
                     </audio>
                 </div>
             </div>
@@ -51,38 +51,37 @@
         <div id="logos">
             {% if work.archive %}
                 <a href="{{ work.archive.url }}">
-                    <div id="logo">download</div>
+                    <div class="logo">download</div>
                 </a>
             {% endif %}
             {% if work.pdf %}
-                <a target="_blank" href="{{ work.pdf.url }}">
-                    <div id="logo">pdf</div>
+                <a target="_blank" rel="noopener" href="{{ work.pdf.url }}">
+                    <div class="logo">pdf</div>
                 </a>
             {% endif %}
             {% if work.github %}
-                <a target="_blank" href="{{ work.github }}">
-                    <div id="logo">github </div>
+                <a target="_blank" rel="noopener" href="{{ work.github }}">
+                    <div class="logo">github</div>
                 </a>
             {% endif %}
             {% if work.vimeo %}
-                <a target="_blank" href="{{ work.vimeo }}">
-                    <div id="logo">vimeo </div>
+                <a target="_blank" rel="noopener" href="{{ work.vimeo }}">
+                    <div class="logo">vimeo</div>
                 </a>
             {% endif %}
             {% if work.youtube %}
-                <a target="_blank" href="{{ work.youtube }}">
-                    <div id="logo">youtube </div>
+                <a target="_blank" rel="noopener" href="{{ work.youtube }}">
+                    <div class="logo">youtube</div>
                 </a>
             {% endif %}
         </div>
 
         <div id="images">
             {% for image in images %}
-                <div id="image" >
-                    <a target="_blank" href="{{image.image.url}}"><img src="{{ image.image.url }}" height=175><a>
+                <div class="image">
+                    <a target="_blank" rel="noopener" href="{{ image.image.url }}"><img src="{{ image.image.url }}" alt="{{ image.title }}" height="175"></a>
                 </div>
             {% endfor %}
         </div>
     </div>
 {% endblock %}
-

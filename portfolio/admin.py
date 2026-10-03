@@ -2,24 +2,24 @@ from django.contrib import admin
 from .models import Work, Event, Venue, Image, Tag, Collaborator, Audio
 
 
+@admin.register(Work)
 class WorkAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "abstract", "created_date"]
-    ordering = ('-created_date',)
+    list_display = ['title', 'abstract', 'created_date', 'featured']
+    list_filter = ['featured', 'tags']
+    search_fields = ['title', 'abstract', 'text']
+    ordering = ['-created_date']
 
-    class Meta:
-        model = Work
 
-
+@admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
+    list_display = ['__str__', 'date', 'venue']
+    ordering = ['-date']
 
-    class Meta:
-        model = Event
+
+@admin.register(Image)
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ['title', 'image']
+    search_fields = ['title']
 
 
-admin.site.register(Work, WorkAdmin)
-admin.site.register(Event, EventAdmin)
-admin.site.register(Venue)
-admin.site.register(Audio)
-admin.site.register(Image)
-admin.site.register(Tag)
-admin.site.register(Collaborator)
+admin.site.register([Venue, Audio, Tag, Collaborator])
