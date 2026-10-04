@@ -27,11 +27,13 @@ IMAGE OPTIONS, written after the image name, in any order:
 Floated images without a width default to 40%, videos to 50%. On phones nothing wraps.
 """
 import logging
+import os
 import re
 from html import unescape
 from urllib.parse import parse_qs, quote, urlencode, urlsplit
 
 import markdown
+from PIL import Image as PILImage
 from django import template
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
@@ -167,10 +169,26 @@ def _image(value, caption):
 ROW_GAP = 8  # px between images in a row (keep in sync with work.css)
 
 
+_ratio_cache = {}
+
+
 def _aspect_ratio(img):
-    """Width / height of an Image record's file, or None if it can't be read."""
+    """Width / height of an Image as browsers display it, or None if unreadable.
+
+    Phone photos are often stored sideways with an EXIF note saying "rotate
+    when displaying". Browsers follow that note but Django's width/height
+    don't, so read the orientation and swap the sides when the photo is turned.
+    """
     try:
-        return img.image.width / img.image.height
+        path = img.image.path
+        key = (path, os.path.getmtime(path))
+        if key not in _ratio_cache:
+            with PILImage.open(path) as pic:
+                w, h = pic.size
+                if pic.getexif().get(0x0112) in (5, 6, 7, 8):  # rotated 90 or 270 degrees
+                    w, h = h, w
+            _ratio_cache[key] = w / h
+        return _ratio_cache[key]
     except Exception as e:
         log.warning('could not read size of image %r: %s', img.title, e)
         return None
