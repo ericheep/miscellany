@@ -161,20 +161,36 @@ def _image(value, caption):
             f'{_caption(caption) if caption else ""}</figure>')
 
 
+ROW_GAP = 8  # px between images in a row (keep in sync with work.css)
+
+
 def _image_row(names, caption):
-    """Several images side by side, equal height, widths in proportion to their shapes."""
-    items = []
+    """Several images side by side at equal height.
+
+    Each image gets an exact share of the row width in proportion to its
+    aspect ratio, so all heights match without relying on browser flex rules.
+    """
+    entries = []
     for name in [n.strip() for n in names.split(',') if n.strip()]:
         img = Image.objects.filter(title=name).first()
+        ratio = 1.0
+        if img:
+            try:
+                ratio = img.image.width / img.image.height
+            except Exception:  # unreadable file: fall back to square
+                pass
+        entries.append((name, img, ratio))
+
+    total = sum(r for _, _, r in entries) or 1
+    gaps = ROW_GAP * (len(entries) - 1)
+    items = []
+    for name, img, ratio in entries:
+        width = f'calc((100% - {gaps}px) * {ratio / total:.5f})'
         if not img:
-            items.append(f'<div class="row-item">{_missing("image", name)}</div>')
+            items.append(f'<div class="row-item" style="width: {width}">{_missing("image", name)}</div>')
             continue
-        try:
-            ratio = img.image.width / img.image.height
-        except Exception:  # unreadable file: fall back to square
-            ratio = 1
         items.append(
-            f'<div class="row-item" style="flex: {ratio:.4f} 1 0">'
+            f'<div class="row-item" style="width: {width}">'
             f'<a href="{img.image.url}" target="_blank" rel="noopener">'
             f'<img src="{img.image.url}" alt="{escape(img.title)}" loading="lazy"></a></div>')
     return (f'<figure class="body-image-row"><div class="row-items">{"".join(items)}</div>'

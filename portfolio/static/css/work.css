@@ -122,7 +122,7 @@
 /* {images: a, b, c}: one row, equal height, widths follow each image's shape */
 .body-image-row { margin: 1.5em 0; }
 .body-image-row .row-items { display: flex; gap: 8px; align-items: flex-start; }
-.body-image-row .row-item { min-width: 0; }
+.body-image-row .row-item { flex: none; min-width: 0; }  /* widths are set per image by body.py */
 .body-image-row img { display: block; width: 100%; height: auto; }
 .body-image-row figcaption { font-size: 0.9em; opacity: 0.75; margin-top: 0.4em; }
 
@@ -143,7 +143,7 @@
     .body-image.align-right img,
     .body-image.align-center img { width: 100%; }
     .body-image-row .row-items { flex-direction: column; }
-    .body-image-row .row-item { flex: none !important; width: 100%; }
+    .body-image-row .row-item { width: 100% !important; }
 }
 
 /* audio player (see portfolio/player.js) */
