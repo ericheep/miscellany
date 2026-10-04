@@ -2,7 +2,7 @@
 
 A line containing only one of these becomes an embedded player:
 
-    https://www.youtube.com/watch?v=dQw4w9WgXcQ    (also youtu.be/..., /shorts/...)
+    https://www.youtube.com/watch?v=dQw4w9WgXcQ    (also youtu.be/..., /shorts/...; ?t=90 starts there)
     https://vimeo.com/123456789                    (also unlisted vimeo.com/123/abc)
     https://soundcloud.com/artist/track            (tracks or sets)
     {image: some-image-title}                      an Image uploaded in the admin
@@ -27,7 +27,7 @@ Floated images without a width default to 40%, videos to 50%. On phones nothing 
 """
 import re
 from html import unescape
-from urllib.parse import quote
+from urllib.parse import parse_qs, quote, urlencode, urlsplit
 
 import markdown
 from django import template
@@ -45,6 +45,12 @@ PLACEMENTS = {'left', 'right', 'center', 'full'}
 WIDTH = re.compile(r'^(\d{1,4})(px|%)?$')
 DEFAULT_FLOAT_WIDTH = '40%'
 DEFAULT_VIDEO_FLOAT_WIDTH = '50%'
+
+# Player settings
+VIMEO_COLOR = 'd8bfd8'   # thistle, the site's accent; hex without '#'
+YOUTUBE_PARAMS = {'rel': '0', 'playsinline': '1'}   # suggestions only from the same channel
+VIMEO_PARAMS = {'title': '0', 'byline': '0', 'portrait': '0', 'dnt': '1', 'color': VIMEO_COLOR}
+TIMESTAMP = re.compile(r'^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s?)?$')
 BARE_URL = re.compile(r'^[ \t]*<?(https?://[^\s>]+)>?((?:[ \t]+\S+)*)[ \t]*$', re.MULTILINE)
 IMAGE_ROW = re.compile(r'^\{images:\s*([^|}]+?)\s*(?:\|\s*(.*?)\s*)?\}[ \t]*$', re.MULTILINE)
 
@@ -187,20 +193,50 @@ def _shortcode(kind, value, caption):
             f'{_caption(caption) if caption else ""}</figure>')
 
 
+def _seconds(value):
+    """'90', '90s', '1m30s' or '1h2m3s' -> seconds; None if unreadable."""
+    m = TIMESTAMP.match((value or '').strip().lower())
+    if not m or not any(m.groups()):
+        return None
+    h, mins, secs = (int(g) if g else 0 for g in m.groups())
+    return h * 3600 + mins * 60 + secs
+
+
+def _start_time(url):
+    """Start time from a pasted link: ?t=90, &t=1m30s, &start=90 or #t=1m30s."""
+    parts = urlsplit(url)
+    query = parse_qs(parts.query)
+    fragment = parse_qs(parts.fragment)
+    for value in (query.get('t') or query.get('start') or fragment.get('t') or []):
+        seconds = _seconds(value)
+        if seconds:
+            return seconds
+    return None
+
+
 def _url_embed(url, placement=None, width=None):
     """Return embed HTML for a supported link, or None to leave it as text."""
     attrs = lambda base: _placement_attrs(base, placement, width, DEFAULT_VIDEO_FLOAT_WIDTH)
+    start = _start_time(url)
 
     m = YOUTUBE.match(url)
     if m:
-        return _video(f'https://www.youtube-nocookie.com/embed/{m.group(1)}', attrs('body-video'))
+        params = dict(YOUTUBE_PARAMS)
+        if start:
+            params['start'] = str(start)
+        src = f'https://www.youtube-nocookie.com/embed/{m.group(1)}?{urlencode(params)}'
+        return _video(escape(src), attrs('body-video'))
 
     m = VIMEO.match(url)
     if m:
-        src = f'https://player.vimeo.com/video/{m.group(1)}'
+        params = {}
         if m.group(2):  # unlisted videos carry a privacy hash
-            src += f'?h={m.group(2)}'
-        return _video(src, attrs('body-video'))
+            params['h'] = m.group(2)
+        params.update(VIMEO_PARAMS)
+        src = f'https://player.vimeo.com/video/{m.group(1)}?{urlencode(params)}'
+        if start:
+            src += f'#t={start}s'
+        return _video(escape(src), attrs('body-video'))
 
     if SOUNDCLOUD.match(url):
         src = f'https://w.soundcloud.com/player/?url={quote(url, safe="")}&visual=false'
