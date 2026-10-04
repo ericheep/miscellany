@@ -95,10 +95,45 @@
 
 .body-video iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; }
 .body-soundcloud iframe { width: 100%; height: 166px; border: 0; }
-.body-image img { max-width: 100%; height: auto; }
 
 .body-image, .body-audio { margin: 1.5em 0; }
 .body-image figcaption, .body-audio figcaption { font-size: 0.9em; opacity: 0.75; margin-top: 0.4em; }
+
+/* images in the body: {image: name [left|right|center|full] [40%|300px] | caption} */
+.body-image img { display: block; max-width: 100%; height: auto; }
+.body-image.sized { max-width: 100%; }
+.body-image.sized img { width: 100%; }
+
+.body-image.align-left {
+    float: left;
+    margin: 0.3em 1.5em 1em 0;
+}
+
+.body-image.align-right {
+    float: right;
+    margin: 0.3em 0 1em 1.5em;
+}
+
+.body-image.align-center { margin-left: auto; margin-right: auto; }
+.body-image.align-center:not(.sized) { display: table; }  /* shrink to the image so it can center */
+
+/* headings and {clear} start below any wrapped image; floats stay inside the text */
+.body h1, .body h2, .body h3, .body h4, .body-clear { clear: both; }
+.body::after { content: ""; display: block; clear: both; }
+
+/* on phones, wrapped and centered images go full width instead */
+@media (max-width: 600px) {
+    .body-image.align-left,
+    .body-image.align-right,
+    .body-image.align-center {
+        float: none;
+        width: auto !important;
+        margin: 1.5em 0;
+    }
+    .body-image.align-left img,
+    .body-image.align-right img,
+    .body-image.align-center img { width: 100%; }
+}
 
 /* audio player (see portfolio/player.js) */
 .audio { margin: 0px 50px 15px 50px; max-width: 900px; }

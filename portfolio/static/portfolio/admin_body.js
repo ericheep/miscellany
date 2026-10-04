@@ -129,7 +129,7 @@
 
     const hint = document.createElement('span');
     hint.className = 'body-hint';
-    hint.textContent = 'Drag or paste images and audio into the box. Add a caption with {image: name | Caption}.';
+    hint.textContent = 'Drag or paste images and audio into the box. Options: {image: name right 40% | Caption} (left, right, center, full; 40% or 300px). {clear} ends a wrap.';
 
     bar.append(btn, hint);
 
