@@ -1,6 +1,6 @@
 """Turn files dropped into the admin's Body box into Image / Audio records.
 
-Images are resized and re-saved, which drops EXIF metadata (including GPS
+Audio gets a waveform file (see peaks.py). Images are resized and re-saved, which drops EXIF metadata (including GPS
 location). Titles are slugs of the filename, made unique with a number.
 """
 import os
@@ -11,6 +11,7 @@ from django.utils.text import slugify
 from PIL import Image as PILImage, ImageOps, UnidentifiedImageError
 
 from .models import Audio, Image
+from .peaks import write_peaks
 
 try:  # iPhone HEIC photos, if pillow-heif is installed
     from pillow_heif import register_heif_opener
@@ -72,6 +73,10 @@ def save_upload(uploaded):
         title = unique_title(Audio, uploaded.name)
         clip = Audio(title=title)
         clip.audio.save(f'{title}{ext}', uploaded, save=True)
+        try:
+            write_peaks(clip.audio.path)
+        except Exception:
+            pass  # no waveform is fine; the player still works
         return f'{{audio: {title}}}'
 
     data, out_ext = process_image(uploaded)

@@ -109,11 +109,42 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    max-width: 600px;
+    max-width: 650px;
     font-family: 'Kreon', serif;
 }
 
+.player-name {
+    flex: 0 1 auto;
+    max-width: 14em;
+    font-size: small;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.player-name:empty { display: none; }
+
+/* the waveform is the seek control; the dotted track is the fallback */
+.player-seek {
+    flex: 1 1 auto;
+    min-width: 80px;
+    cursor: pointer;
+    outline: none;
+}
+
+.player-seek:focus-visible { outline: 2px dotted black; outline-offset: 3px; }
+
+.player-wave {
+    display: none;
+    width: 100%;
+    height: 30px;
+}
+
+.player.has-wave .player-wave { display: block; }
+.player.has-wave .player-track { display: none; }
+
 .player-toggle {
+    flex: 0 0 auto;
     font: inherit;
     font-size: small;
     font-weight: bold;
@@ -128,13 +159,8 @@
 
 .player-toggle:hover,
 .player.playing .player-toggle {
-    background: repeating-linear-gradient(
-        135deg,
-        lightgrey,
-        lightgrey 1px,
-        white 1px,
-        white 5px
-    );
+    color: black;
+    background: thistle;
 }
 
 .player-toggle:disabled {
@@ -145,14 +171,11 @@
 
 .player-track {
     position: relative;
-    flex: 1 1 auto;
     height: 14px;
     border: 2px dotted black;
-    cursor: pointer;
 }
 
-.player-track:hover,
-.player-track:focus-visible {
+.player-seek:hover .player-track {
     background: repeating-linear-gradient(
         135deg,
         lightgrey,
@@ -160,7 +183,6 @@
         white 1px,
         white 5px
     );
-    outline: none;
 }
 
 .player-fill {
@@ -176,6 +198,7 @@
 }
 
 .player-time {
+    flex: 0 0 auto;
     font-size: small;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
