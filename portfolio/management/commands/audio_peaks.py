@@ -8,7 +8,7 @@ import os
 from django.core.management.base import BaseCommand
 
 from portfolio.models import Audio
-from portfolio.peaks import peaks_path, write_peaks
+from portfolio.peaks import has_peaks, write_peaks
 
 
 class Command(BaseCommand):
@@ -25,7 +25,7 @@ class Command(BaseCommand):
                 self.stderr.write(f'missing file: {path}')
                 failed += 1
                 continue
-            if not options['all'] and os.path.exists(peaks_path(path)):
+            if not options['all'] and has_peaks(path):
                 skipped += 1
                 continue
             try:

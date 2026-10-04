@@ -48,7 +48,20 @@ def compute_peaks(audio_path, bins=BINS):
 
 def write_peaks(audio_path):
     """Compute and save the peaks file. Returns its path."""
+    data = compute_peaks(audio_path)  # compute first, so a failure leaves no empty file
     out = peaks_path(audio_path)
-    with open(out, 'w') as f:
-        json.dump(compute_peaks(audio_path), f, separators=(',', ':'))
+    tmp = out + '.tmp'
+    with open(tmp, 'w') as f:
+        json.dump(data, f, separators=(',', ':'))
+    os.replace(tmp, out)
     return out
+
+
+def has_peaks(audio_path):
+    """True if a usable peaks file exists for this audio file."""
+    try:
+        with open(peaks_path(audio_path)) as f:
+            data = json.load(f)
+        return bool(data.get('max')) if isinstance(data, dict) else bool(data)
+    except (OSError, ValueError):
+        return False
