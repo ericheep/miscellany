@@ -12,6 +12,7 @@ A line containing only one of these becomes an embedded player:
     {audio: some-audio-title | A caption}          ...with a caption
 
     {images: one, two, three | Caption}            several images side by side at equal height
+    {images: one, two left 50% | Caption}          ...placed and sized like a single image
     https://vimeo.com/123456789 right 50%          videos take the same placement/width options
     {clear}                                        start the next text below any wrapped image
 
@@ -25,6 +26,7 @@ IMAGE OPTIONS, written after the image name, in any order:
     300px or 300    fixed width in pixels (never wider than the column)
 Floated images without a width default to 40%, videos to 50%. On phones nothing wraps.
 """
+import logging
 import re
 from html import unescape
 from urllib.parse import parse_qs, quote, urlencode, urlsplit
@@ -37,6 +39,7 @@ from django.utils.safestring import mark_safe
 from portfolio.models import Audio, Image
 
 register = template.Library()
+log = logging.getLogger(__name__)
 
 SHORTCODE = re.compile(
     r'^\{(image|audio):\s*([^|}]+?)\s*(?:\|\s*(.*?)\s*)?\}[ \t]*$', re.MULTILINE)
@@ -164,36 +167,50 @@ def _image(value, caption):
 ROW_GAP = 8  # px between images in a row (keep in sync with work.css)
 
 
-def _image_row(names, caption):
+def _aspect_ratio(img):
+    """Width / height of an Image record's file, or None if it can't be read."""
+    try:
+        return img.image.width / img.image.height
+    except Exception as e:
+        log.warning('could not read size of image %r: %s', img.title, e)
+        return None
+
+
+def _image_row(value, caption):
     """Several images side by side at equal height.
 
     Each image gets an exact share of the row width in proportion to its
     aspect ratio, so all heights match without relying on browser flex rules.
+    Placement/width options may follow the last name: {images: a, b left 50%}.
     """
+    names = [n.strip() for n in value.split(',') if n.strip()]
+    placement = width = None
+    if names and not Image.objects.filter(title=names[-1]).exists():
+        names[-1], placement, width = _image_options(names[-1])
+
     entries = []
-    for name in [n.strip() for n in names.split(',') if n.strip()]:
+    for name in names:
         img = Image.objects.filter(title=name).first()
-        ratio = 1.0
-        if img:
-            try:
-                ratio = img.image.width / img.image.height
-            except Exception:  # unreadable file: fall back to square
-                pass
+        ratio = _aspect_ratio(img) if img else None
         entries.append((name, img, ratio))
 
-    total = sum(r for _, _, r in entries) or 1
+    total = sum(r or 1.0 for _, _, r in entries) or 1
     gaps = ROW_GAP * (len(entries) - 1)
     items = []
     for name, img, ratio in entries:
-        width = f'calc((100% - {gaps}px) * {ratio / total:.5f})'
+        share = (ratio or 1.0) / total
+        style = f'width: calc((100% - {gaps}px) * {share:.5f})'
         if not img:
-            items.append(f'<div class="row-item" style="width: {width}">{_missing("image", name)}</div>')
+            items.append(f'<div class="row-item" style="{style}">{_missing("image", name)}</div>')
             continue
+        unknown = '' if ratio else ' size-unknown'
         items.append(
-            f'<div class="row-item" style="width: {width}">'
+            f'<div class="row-item{unknown}" style="{style}">'
             f'<a href="{img.image.url}" target="_blank" rel="noopener">'
             f'<img src="{img.image.url}" alt="{escape(img.title)}" loading="lazy"></a></div>')
-    return (f'<figure class="body-image-row"><div class="row-items">{"".join(items)}</div>'
+
+    attrs = _placement_attrs('body-image-row', placement, width, '50%')
+    return (f'<figure {attrs}><div class="row-items">{"".join(items)}</div>'
             f'{_caption(caption) if caption else ""}</figure>')
 
 
