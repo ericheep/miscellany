@@ -34,9 +34,12 @@ CSRF_TRUSTED_ORIGINS = ['https://ericheep.com', 'https://www.ericheep.com']
 SECURE_SSL_REDIRECT = not DEBUG
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
-
 # Start at one hour; raise to 31536000 (one year) once HTTPS has proven stable
 SECURE_HSTS_SECONDS = 0 if DEBUG else 3600
+# Share only the site's address (not the full page URL) with other sites.
+# YouTube embeds refuse to play without it (error 153); Django's default
+# 'same-origin' sends nothing to other sites.
+SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
 
 
 # Application definition

@@ -60,8 +60,9 @@ def _missing(kind, value):
 
 
 def _video(src, attrs='class="body-video"'):
-    return (f'<div {attrs}><iframe src="{src}" '
-            f'allow="fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>')
+    # YouTube needs to know which site the video is embedded on (error 153 otherwise)
+    return (f'<div {attrs}><iframe src="{src}" referrerpolicy="strict-origin-when-cross-origin" '
+            f'allow="fullscreen; picture-in-picture; encrypted-media" allowfullscreen loading="lazy"></iframe></div>')
 
 
 def _caption_html(text):
