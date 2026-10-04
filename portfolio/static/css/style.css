@@ -54,7 +54,7 @@ h1 {
 /* links in body text */
 #text a {
     font-weight: bold;
-    font-color: lightpink;
+    color: lightpink;
 }
 
 /* image links (clicking an image opens it full size) don't need a highlight */
