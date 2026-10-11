@@ -1,22 +1,25 @@
+{% load static %}<!DOCTYPE html>
 <html lang="en">
     <head>
-        <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
-        <link href="/static/css/style.css" rel="stylesheet"/>
-        {%block css %}{% endblock %}
-        {%block scripts %}{% endblock %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}{% endblock %}</title>
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        {% block css %}{% endblock %}
+        {% block scripts %}{% endblock %}
     </head>
 
-    <header>
-        <div id="header">
-            <h1 id="name"> <a href="/">eric heep</a> </h1>
-            <a href="/info"><h3 class="nav-item" id="info">info</h3></a>
-						<span id="email"> ericheep at gmail dot com </span>
-        </div>
-    </header>
-
     <body>
+        <header>
+            <div id="header">
+                <h1 id="name"><a href="/">eric heep</a></h1>
+                <a href="/info/"><h3 class="nav-item" id="info">info</h3></a>
+                <span id="email">ericheep at gmail dot com</span>
+            </div>
+        </header>
+
         {% block body %}{% endblock %}
-        {% block footer %} {% endblock %}
+        {% block footer %}{% endblock %}
     </body>
 </html>
