@@ -1,39 +1,41 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load markdown_filter %}
 
 {% block css %}
-	<link href="https://fonts.googleapis.com/css?family=Kreon:300,400" rel="stylesheet">
-	<link href="{% static "/css/info.css" %}" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Kreon:300,400" rel="stylesheet">
+<link href="{% static "/css/works.css" %}" rel="stylesheet"/>
 {% endblock %}
-{% block title %}eric heep | info{% endblock %}
+
+{% block title %}eric heep{% endblock %}
 
 {% block body %}
-    <div id="page">
-        <div id="profile">
-            <div id="sidebar">
-                <div id="image">
-                    <img src="{{ headshot.image.url }}" width=150 height=150>
-                </div>
-            </div>
-            <div id="text">
-                {{ profile.text|markdownify|safe }}
-                <div id="logos">
-                    <a target="_blank" href="{{profile.github }}">
-                        <div id="logo">github</div>
-                    </a>
-                    <a target="_blank" href="{{profile.vimeo}}">
-                        <div id="logo">vimeo</div>
-                    </a>
-                    <a target="_blank" href="{{profile.youtube}}">
-                        <div id="logo">youtube</div>
-                    </a>
-                    <a target="_blank" href="https://twitter.com/dkfjsal">
-                        <div id="logo">twitter</div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div>
-    </div>
+<div id="work-page">
+	<div class="work-tags">
+		{% for tag in tags %}
+		{% if tag.slug == tag_slug %}
+		<a class="work-tag selected" href="/works/">{{ tag }}</a>
+		{% else %}
+		<a class="work-tag" href="/{{ tag.slug }}/">{{ tag }}</a>
+		{% endif %}
+		{% endfor %}
+	</div>
+
+	<div class="work-list">
+		{% for work in works %}
+		<a class="work-card" href="/works/{{ work.slug }}/">
+			<div class="work-thumbnail">
+				{% if work.mainImage %}
+				<img src="{{ work.mainImage.url }}" alt="{{ work.title }}" loading="lazy">
+				{% endif %}
+			</div>
+			<div class="work-title">
+				<b>{{ work.title }}</b> ({{ work.created_date|date:"Y" }})
+			</div>
+			<div class="work-abstract">
+				{{ work.abstract }}
+			</div>
+		</a>
+		{% endfor %}
+	</div>
+</div>
 {% endblock %}

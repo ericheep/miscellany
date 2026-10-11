@@ -4,94 +4,66 @@
 }
 
 /* tags */
-#work-tags {
+.work-tags {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 6px;
+  gap: 6px;
+  margin: 10px 0 14px 0;
 }
 
-#work-tag {
-  flex: 0 1 auto;
+.work-tag {
   font-weight: bold;
-  text-align: center;
   font-size: small;
-  margin-top: 10px;
-  margin-bottom: 8px;
-  margin-right: 6px;
   padding: 5px 10px;
-  border: 2px;
-  border-style: dotted;
+  border: 2px dotted black;
 }
 
-#work-tag:hover {
+.work-tag:hover {
   color: white;
   background: black;
 }
 
-#left {
-  display: flex;
-  flex-direction: column;
+/* the grid: as many columns as fit at 260px or wider, all the same width */
+.work-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
 }
 
-#work-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: flex-start;
+.work-card {
+  display: block;
+  padding: 4px;
+  border: 2px dotted black;
 }
 
-#work-card {
-  flex-shrink:1;
-  order: 0;
-  padding: 4px 4px;
-  margin-bottom: 15px;
-  margin-right: 10px;
-  font-size: normal;
-  border: 2px;
-  border-style: dotted;
-  max-width: 325px;
-}
-
-.selected {
+.selected,
+.work-card:hover {
   background: repeating-linear-gradient(
-  135deg,
-  lightgrey,
-  lightgrey 1px,
-  white 1px,
-  white 5px
+    135deg,
+    lightgrey,
+    lightgrey 1px,
+    white 1px,
+    white 5px
   );
   color: black;
 }
 
-#work-card:hover {
-  background: repeating-linear-gradient(
-  135deg,
-  lightgrey,
-  lightgrey 1px,
-  white 1px,
-  white 5px
-  );
-}
-
-#work-thumbnail {
-  order: 0;
-  align-self: center;
-}
-
-/* first */
-#work-title {
+/* every thumbnail the same 4:3 box; images are cropped to fit, never stretched */
+.work-thumbnail img {
   display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
+.work-title {
   margin-top: 8px;
   margin-bottom: 6px;
-  max-width: 315px;
 }
 
-#work-abstract {
-  display: block;
-  max-width: 315px;
-  margin:bottom: 2px;
+.work-abstract {
+  margin-bottom: 2px;
 }
