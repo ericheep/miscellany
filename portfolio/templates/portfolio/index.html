@@ -10,36 +10,31 @@
 
 {% block body %}
 <div id="work-page">
-	<div id="work-tags" >
+	<div class="work-tags">
 		{% for tag in tags %}
 		{% if tag.slug == tag_slug %}
-		<a href="/works/"><div class="selected" id="work-tag">{{ tag }}</div></a>
+		<a class="work-tag selected" href="/works/">{{ tag }}</a>
 		{% else %}
-		<a href="/{{ tag.slug }}/"><div id="work-tag">{{ tag }}</div></a>
+		<a class="work-tag" href="/{{ tag.slug }}/">{{ tag }}</a>
 		{% endif %}
 		{% endfor %}
 	</div>
 
-	<div id="work-list">
+	<div class="work-list">
 		{% for work in works %}
-		<div id="work-card">
-			<a id="work-item" href="/works/{{ work.slug }}/">
-				<div id="work-thumbnail">
-					{% if work.mainImage %}
-					<img src="{{  work.mainImage.url }}" width=317>
-					{% endif %}
-				</div>
-				<div id="work-title">
-					<b>{{ work.title }}</b>
-					({{ work.created_date|date:"Y" }})
-					<br>
-				</div>
-				<div id="work-abstract">
-					{{ work.abstract }}
-					</br>
-				</div>
-			</a>
-		</div>
+		<a class="work-card" href="/works/{{ work.slug }}/">
+			<div class="work-thumbnail">
+				{% if work.mainImage %}
+				<img src="{{ work.mainImage.url }}" alt="{{ work.title }}" loading="lazy">
+				{% endif %}
+			</div>
+			<div class="work-title">
+				<b>{{ work.title }}</b> ({{ work.created_date|date:"Y" }})
+			</div>
+			<div class="work-abstract">
+				{{ work.abstract }}
+			</div>
+		</a>
 		{% endfor %}
 	</div>
 </div>
