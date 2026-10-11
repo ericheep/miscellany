@@ -54,6 +54,7 @@
 .work-thumbnail img {
   display: block;
   width: 100%;
+  height: auto;          /* let the 4:3 ratio set the height, not the img's height attribute */
   aspect-ratio: 4 / 3;
   object-fit: cover;
   object-position: center;
