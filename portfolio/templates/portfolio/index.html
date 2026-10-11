@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load thumbs %}
 
 {% block css %}
 <link href="https://fonts.googleapis.com/css?family=Kreon:300,400" rel="stylesheet">
@@ -24,9 +25,7 @@
 		{% for work in works %}
 		<a class="work-card" href="/works/{{ work.slug }}/">
 			<div class="work-thumbnail">
-				{% if work.mainImage %}
-				<img src="{{ work.mainImage.url }}" alt="{{ work.title }}" loading="lazy">
-				{% endif %}
+				{% thumbnail work.mainImage work.title forloop.counter %}
 			</div>
 			<div class="work-title">
 				<b>{{ work.title }}</b> ({{ work.created_date|date:"Y" }})

@@ -59,6 +59,13 @@ class Work(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+        if self.mainImage:
+            from .thumbnails import make_thumbnails, thumbs_current
+            try:
+                if not thumbs_current(self.mainImage.path):
+                    make_thumbnails(self.mainImage.path)
+            except Exception:
+                pass  # the grid falls back to the original image
 
     def __str__(self):
         return self.title
