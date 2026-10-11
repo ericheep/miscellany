@@ -1,8 +1,9 @@
 /* whole page */
 #page {
-    display:flex;
+    display: flex;
     flex: 0 1 auto;
     flex-direction: column;
+    max-width: 1000px;   /* with auto margins, centers the page on wide screens */
     margin: 25px auto;
 }
 
