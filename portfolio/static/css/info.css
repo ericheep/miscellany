@@ -1,40 +1,53 @@
-#page {
-    margin: 25px;
-}
-#profile {
+/* info page: headshot beside the profile text, collaborators below.
+   Loaded after work.css, which provides the page centering and the
+   body styles (images, embeds, players, links). */
+
+.profile {
     display: flex;
     flex-direction: row;
+    align-items: flex-start;
+    gap: 25px;
+    margin: 0 25px;
 }
 
-#image {
-    order: 0;
-    margin-right: 15px;
+.profile-image {
+    flex: 0 0 auto;
     margin-top: 15px;
 }
 
-#text {
-    order: 1;
-    padding-left: 15px;
+.profile-image img {
+    display: block;
+    width: 250px;
+    max-width: 100%;
+    height: auto;
 }
 
-#logos {
+/* work.css gives #text side margins for work pages; not needed here */
+.info-page #text.profile-text {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* collaborators: buttons in the same dashed style as download / pdf */
+.collaborators { margin: 25px; }
+
+.collaborators-heading {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.collaborator-list {
     display: flex;
-    width: 100%;
-    justify-content: flex-end;
     flex-wrap: wrap;
     font-weight: bold;
-    flex-direction: row;
 }
 
-#logo {
-    padding: 3px 3px;
-    margin: 15px 5px;
-    font-size: small;
-    border: 2px;
-    border-style: none dashed dashed none;
-}
+.collaborator-list .logo { display: inline-block; }
 
-#logo:hover {
-    color: white;
-    background: red;
+/* phones: headshot above the text */
+@media (max-width: 600px) {
+    .profile { flex-direction: column; gap: 10px; }
+    .profile-image img { width: 180px; }
 }
