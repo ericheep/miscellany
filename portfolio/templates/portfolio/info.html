@@ -33,20 +33,5 @@
             {% endif %}
         </div>
     </div>
-
-    {% if collaborators %}
-    <div class="collaborators">
-        <div class="collaborators-heading">collaborators</div>
-        <div class="collaborator-list">
-            {% for person in collaborators %}
-                {% if person.url %}
-                <a class="logo" href="{{ person.url }}" target="_blank" rel="noopener">{{ person.name }}</a>
-                {% else %}
-                <span class="logo">{{ person.name }}</span>
-                {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-    {% endif %}
 </div>
 {% endblock %}
