@@ -28,7 +28,7 @@
 				{% thumbnail work.mainImage work.title forloop.counter %}
 			</div>
 			<div class="work-title">
-				<b>{{ work.title }}</b> ({{ work.created_date|date:"Y" }})
+				<b>{{ work.title }}</b> ({{ work.year_range }})
 			</div>
 			<div class="work-abstract">
 				{{ work.abstract }}

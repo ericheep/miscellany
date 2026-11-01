@@ -14,8 +14,8 @@ from .uploads import UploadError, save_upload
 
 @admin.register(Work)
 class WorkAdmin(admin.ModelAdmin):
-    list_display = ['title', 'abstract', 'created_date', 'featured']
-    list_filter = ['featured', 'tags']
+    list_display = ['title', 'abstract', 'year_range', 'ongoing', 'featured']
+    list_filter = ['featured', 'ongoing', 'tags']
     search_fields = ['title', 'abstract', 'text', 'body']
     ordering = ['-created_date']
 

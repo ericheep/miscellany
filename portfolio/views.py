@@ -1,9 +1,13 @@
+from django.db.models.functions import Coalesce
 from django.shortcuts import render, get_object_or_404
 from .models import Work, Tag, Event, Image, Collaborator
 
 
 def works(request, tag_slug=None):
-    works = Work.objects.filter(featured=True).order_by('-created_date')
+    # Ongoing works first; then by most recent date (end date if any, else start)
+    works = (Work.objects.filter(featured=True)
+             .annotate(recent=Coalesce('end_date', 'created_date'))
+             .order_by('-ongoing', '-recent', '-created_date'))
     if tag_slug is not None:
         works = works.filter(tags__slug=tag_slug)
 

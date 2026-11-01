@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.template.defaultfilters import slugify
 
@@ -41,7 +42,13 @@ class Work(models.Model):
         help_text='New-style page in Markdown with {image: title}, {audio: title}, '
                   '{vimeo: id} and {youtube: id} lines. When filled in, it replaces the old layout.',
     )
-    created_date = models.DateField()
+    created_date = models.DateField('start date')
+    end_date = models.DateField(
+        null=True, blank=True,
+        help_text='Optional. Leave empty for a single date; fill in for a range like 2019–2022.')
+    ongoing = models.BooleanField(
+        default=False,
+        help_text='Still in progress: shows as "2025–present" and sorts to the top of the works page.')
     tags = models.ManyToManyField(Tag, blank=True)
     images = models.ManyToManyField(Image, blank=True)
     mainImage = models.ImageField(upload_to='images', blank=True)
@@ -69,6 +76,27 @@ class Work(models.Model):
 
     def __str__(self):
         return self.title
+
+    def clean(self):
+        if self.ongoing and self.end_date:
+            raise ValidationError({'end_date': 'An ongoing work has no end date. Clear one of the two.'})
+        if self.end_date and self.created_date and self.end_date < self.created_date:
+            raise ValidationError({'end_date': 'The end date is before the start date.'})
+
+    def year_range(self):
+        """Years only, for the works grid: 2022, 2019–2022 or 2025–present."""
+        start = self.created_date.year
+        if self.ongoing:
+            return f'{start}–present'
+        if self.end_date and self.end_date.year != start:
+            return f'{start}–{self.end_date.year}'
+        return str(start)
+
+    def date_display(self):
+        """For a work's own page: 'Mar, 2022' for a single date, otherwise the year range."""
+        if self.ongoing or (self.end_date and self.end_date.year != self.created_date.year):
+            return self.year_range()
+        return self.created_date.strftime('%b, %Y')
 
 
 class Venue(models.Model):
