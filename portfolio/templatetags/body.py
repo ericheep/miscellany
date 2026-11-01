@@ -14,6 +14,8 @@ A line containing only one of these becomes an embedded player:
     {images: one, two, three | Caption}            several images side by side at equal height
     {images: one, two left 50% | Caption}          ...placed and sized like a single image
     https://vimeo.com/123456789 right 50%          videos take the same placement/width options
+    https://youtube.com/shorts/abc123              Shorts are tall (9:16) and float right with text beside them
+    https://vimeo.com/123456789 vertical left      'vertical' makes any video tall
     {clear}                                        start the next text below any wrapped image
 
 A link inside a sentence stays an ordinary link.
@@ -50,6 +52,8 @@ PLACEMENTS = {'left', 'right', 'center', 'full'}
 WIDTH = re.compile(r'^(\d{1,4})(px|%)?$')
 DEFAULT_FLOAT_WIDTH = '40%'
 DEFAULT_VIDEO_FLOAT_WIDTH = '50%'
+VERTICAL_WORDS = {'vertical', 'portrait'}
+DEFAULT_VERTICAL_WIDTH = '280px'   # tall videos float right at this width unless told otherwise
 
 # Player settings
 VIMEO_COLOR = 'd8bfd8'   # thistle, the site's accent; hex without '#'
@@ -265,9 +269,17 @@ def _start_time(url):
     return None
 
 
-def _url_embed(url, placement=None, width=None):
+def _url_embed(url, placement=None, width=None, vertical=False):
     """Return embed HTML for a supported link, or None to leave it as text."""
-    attrs = lambda base: _placement_attrs(base, placement, width, DEFAULT_VIDEO_FLOAT_WIDTH)
+    vertical = vertical or '/shorts/' in url
+    if vertical and not placement and not width:
+        placement, width = 'right', DEFAULT_VERTICAL_WIDTH  # sit beside the text
+
+    def attrs(base):
+        default = DEFAULT_VERTICAL_WIDTH if vertical else DEFAULT_VIDEO_FLOAT_WIDTH
+        a = _placement_attrs(base, placement, width, default)
+        return a.replace(f'class="{base}', f'class="{base} vertical', 1) if vertical and base == 'body-video' else a
+
     start = _start_time(url)
 
     m = YOUTUBE.match(url)
@@ -298,10 +310,13 @@ def _url_embed(url, placement=None, width=None):
 
 
 def _bare_url(m):
-    options = _options_only(m.group(2) or '')
+    words = (m.group(2) or '').split()
+    vertical = any(w.lower() in VERTICAL_WORDS for w in words)
+    words = [w for w in words if w.lower() not in VERTICAL_WORDS]
+    options = _options_only(' '.join(words))
     if options is None:  # other words on the line: leave it as text
         return m.group(0)
-    html = _url_embed(m.group(1), *options)
+    html = _url_embed(m.group(1), *options, vertical=vertical)
     return _block(html) if html else m.group(0)
 
 
