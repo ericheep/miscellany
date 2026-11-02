@@ -1,6 +1,6 @@
 from django.db.models.functions import Coalesce
 from django.shortcuts import render, get_object_or_404
-from .models import Work, Tag, Event, Collaborator
+from .models import Work, Tag, Event
 
 
 def works(request, tag_slug=None):
@@ -40,6 +40,5 @@ def info(request):
         'work': profile,
         'images': profile.images.all(),
         'audios': profile.audio.all(),
-        'is_info': True,  # no title/date card; collaborators listed at the end
-        'collaborators': Collaborator.objects.order_by('name'),
+        'is_info': True,  # no title/date card
     })

@@ -60,21 +60,6 @@
             {% endfor %}
         {% endif %}
 
-        {% if is_info and collaborators %}
-            <div id="collaborators">
-                <div class="collaborators-heading">collaborators</div>
-                <div class="collaborator-list">
-                    {% for person in collaborators %}
-                        {% if person.url %}
-                        <a class="logo" href="{{ person.url }}" target="_blank" rel="noopener">{{ person.name }}</a>
-                        {% else %}
-                        <span class="logo">{{ person.name }}</span>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        {% endif %}
-
         <div id="logos">
             {% if work.archive %}
                 <a href="{{ work.archive.url }}">
