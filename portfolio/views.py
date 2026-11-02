@@ -1,6 +1,6 @@
 from django.db.models.functions import Coalesce
 from django.shortcuts import render, get_object_or_404
-from .models import Work, Tag, Event, Image, Collaborator
+from .models import Work, Tag, Event, Collaborator
 
 
 def works(request, tag_slug=None):
@@ -34,8 +34,12 @@ def events(request):
 
 
 def info(request):
-    return render(request, 'portfolio/info.html', {
-        'profile': get_object_or_404(Work, title='Profile'),
-        'headshot': get_object_or_404(Image, title='profile'),
+    """The info page is the work titled 'Profile', shown like any other work."""
+    profile = get_object_or_404(Work, title='Profile')
+    return render(request, 'portfolio/work.html', {
+        'work': profile,
+        'images': profile.images.all(),
+        'audios': profile.audio.all(),
+        'is_info': True,  # no title/date card; collaborators listed at the end
         'collaborators': Collaborator.objects.order_by('name'),
     })

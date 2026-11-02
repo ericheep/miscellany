@@ -88,6 +88,12 @@
     padding-right: 5px;
 }
 
+/* info page: collaborators listed after the text */
+#collaborators { order: 2; margin: 0 25px 15px 25px; }
+.collaborators-heading { font-weight: bold; margin-bottom: 8px; }
+.collaborator-list { display: flex; flex-wrap: wrap; font-weight: bold; }
+.collaborator-list .logo { display: inline-block; }
+
 #bottom {
     margin-top: 15px;
     display: flex;
